@@ -2,7 +2,7 @@ extends Node2D
 
 onready var textInst=load("res://UI/SmallMsg.tscn")
 
-var play_note = false
+var play_note = true
 
 var delta_sum_ := 0.0
 
