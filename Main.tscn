@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Master.wav" type="AudioStream" id=2]
@@ -6,6 +6,10 @@
 [ext_resource path="res://arrow.tscn" type="PackedScene" id=4]
 [ext_resource path="res://drum.tscn" type="PackedScene" id=5]
 [ext_resource path="res://graphics/BgEightiesBabyT3.png" type="Texture" id=6]
+[ext_resource path="res://samples/5G.ogg" type="AudioStream" id=7]
+[ext_resource path="res://samples/5C.ogg" type="AudioStream" id=8]
+[ext_resource path="res://samples/5F.ogg" type="AudioStream" id=9]
+[ext_resource path="res://samples/5D.ogg" type="AudioStream" id=10]
 
 [sub_resource type="Shader" id=1]
 code = "/*
@@ -354,6 +358,18 @@ rotation = 1.5708
 color = Color( 0.890196, 0.14902, 0.14902, 1 )
 
 [node name="Notifications" type="Node" parent="."]
+
+[node name="Sample1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+
+[node name="Sample2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[node name="Sample3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+
+[node name="Sample4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
 
 [connection signal="midi_event" from="MidiPlayer" to="." method="_on_midi_event"]
 [connection signal="midi_event" from="midi2" to="." method="_on_midi2_event"]

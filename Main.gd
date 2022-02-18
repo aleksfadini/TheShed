@@ -2,6 +2,8 @@ extends Node2D
 
 onready var textInst=load("res://UI/SmallMsg.tscn")
 
+var play_note = false
+
 var delta_sum_ := 0.0
 
 var left := []
@@ -65,6 +67,14 @@ func _process(delta):
 					s.queue.pop_front().hit(s.node.global_position)
 					perfect(s.node.global_position)
 					print("hit")
+					if play_note:
+						var node_nr=1
+						match s.key:
+							"left": node_nr=1
+							"right": node_nr=2
+							"up": node_nr=3
+							"down": node_nr=4
+						get_node("Sample"+str(node_nr)).play()
 				else:
 					early(s.node.global_position)
 					print("TOO EARLY")
