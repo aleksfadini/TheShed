@@ -103,9 +103,9 @@ func _process(delta):
 		s.node.pressed = Input.is_action_pressed(s.key)
 	if delta_sum_ >= 0.1 and not $MidiPlayer.playing:
 		$MidiPlayer.play()
-	if delta_sum_ >= 1.0 and not $midi2.playing:
+	if delta_sum_ >= 1.1 and not $midi2.playing:
 		$midi2.play()
-	if delta_sum_ >= 1.0 and not $music.playing:
+	if delta_sum_ >= 1.1 and not $music.playing:
 		$music.play()
 #	if delta_sum_ >= 1.04 and not $Sample1.playing:
 		if play_note:
