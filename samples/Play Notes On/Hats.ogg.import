@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Hats.ogg-ed0f152a50436049c2053c97a9a4abef.oggstr"
+
+[deps]
+
+source_file="res://samples/Play Notes On/Hats.ogg"
+dest_files=[ "res://.import/Hats.ogg-ed0f152a50436049c2053c97a9a4abef.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

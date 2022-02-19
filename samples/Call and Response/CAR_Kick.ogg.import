@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/CAR_Kick.ogg-c3a277839198ea9e8c66ccff8d4d3950.oggstr"
+
+[deps]
+
+source_file="res://samples/Call and Response/CAR_Kick.ogg"
+dest_files=[ "res://.import/CAR_Kick.ogg-c3a277839198ea9e8c66ccff8d4d3950.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

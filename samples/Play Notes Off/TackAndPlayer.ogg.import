@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/TackAndPlayer.ogg-e05346363e9bc27c9449b69843c5dcef.oggstr"
+
+[deps]
+
+source_file="res://samples/Play Notes Off/TackAndPlayer.ogg"
+dest_files=[ "res://.import/TackAndPlayer.ogg-e05346363e9bc27c9449b69843c5dcef.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
