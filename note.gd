@@ -31,7 +31,7 @@ func _process(delta):
 		queue_free()
 		return
 
-	global_position.y += delta * 500.0
+	global_position.y += delta * 600.0
 		
 	if state_ == "miss":
 		if global_position.y > 600.0:
