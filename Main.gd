@@ -3,6 +3,12 @@ extends Node2D
 onready var textInst=load("res://UI/SmallMsg.tscn")
 onready var playNoteTrack=load("res://samples/Play Notes On/Backing Track.ogg")
 
+var yeah_points=10
+var miss_points=-2
+var early_points=-2
+var wut_points=-4
+var score_tot=0
+
 var play_note = true
 
 var delta_sum_ := 0.0
@@ -59,6 +65,7 @@ func _ready() -> void:
 	if play_note:
 		$music.stream=playNoteTrack
 		mute_all()
+	update_score()
 #	mute_all()
 #	$music.play()
 #	$Sample1.play()
@@ -86,17 +93,21 @@ func _process(delta):
 							"down": node_nr=3
 							"right": node_nr=4
 						$Timers.get_node("Exp"+str(node_nr)).start_expiration()
+						update_score(yeah_points)
 				else:
+					update_score(early_points)
 					early(s.node.global_position)
 					$Wrong.play()
 					print("TOO EARLY")
 			else:
+				update_score(wut_points)
 				print("WUT??")
 				
 		if not s.queue.empty():
 			if s.queue.front().test_miss(delta_sum_):
 				s.queue.pop_front().miss()
 				miss(s.node.global_position)
+				update_score(miss_points)
 				print("miss")
 
 	for s in stuff.values():
@@ -161,6 +172,10 @@ func mute_all():
 	$Sample3.volume_db=-80
 	$Sample4.volume_db=-80
 
+func update_score(score=0):
+	score_tot+=score
+	$crt/UI/Score/Points.text=str(score_tot)
+	
 #func unmute_sound_by_nr(nr=1):
 #	get_node("Sample"+str(nr)).play()
 #	var new_timer=Timer.new()

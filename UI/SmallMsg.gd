@@ -4,7 +4,8 @@ extends Node2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-
+#var yeah=false
+#var miss=false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,7 +19,13 @@ func _ready():
 func show_text(text="PERFECT!!!"):
 	$text/Label.text=text
 	$LabelFade.play("show")
-	$LabelMove.play("go_up")
+	if text=="miss":
+		$LabelMove.play("go_down")
+	else:
+		$LabelMove.play("go_up")
+	if text=="YEAH!":
+		$Particles2D.show()
+		$Particles2D.emitting=true
 
 
 func _on_LabelFade_animation_finished(anim_name):

@@ -57,3 +57,7 @@ texture = ExtResource( 8 )
 
 [node name="Instrument" type="Sprite" parent="Drummer"]
 texture = ExtResource( 7 )
+
+[node name="EyesTimer" type="Timer" parent="."]
+
+[node name="SticksTimer" type="Timer" parent="."]

@@ -4,7 +4,9 @@ extends Node2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-
+var sticks_up=load("res://graphics/DrummerStickHigh.png")
+var sticks_med=load("res://graphics/DrummerStickMid.png")
+var sticks_low=load("res://graphics/DrummerStickLow.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,3 +38,12 @@ func _process(delta) -> void:
 #	$kick.scale = lerp($kick.scale, Vector2(1, 1), delta * 10.0)
 	$snare.position.y = lerp($snare.position.y, 0, delta * 10.0)
 	$hat.position.y = lerp($hat.position.y, 0, delta * 10.0)
+
+func sticks_up():
+	$Drummer/Sticks.texture=sticks_up
+
+func sticks_med():
+	$Drummer/Sticks.texture=sticks_med
+
+func sticks_low():
+	$Drummer/Sticks.texture=sticks_low

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://samples/Play Notes Off/TackAndPlayer.ogg" type="AudioStream" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://graphics/BgEightiesBabyT3.png" type="Texture" id=6]
 [ext_resource path="res://samples/wrong.ogg" type="AudioStream" id=7]
 [ext_resource path="res://NoteExpirationTimer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Themes/UITheme.tres" type="Theme" id=9]
 
 [sub_resource type="Shader" id=1]
 code = "/*
@@ -282,6 +283,48 @@ script = ExtResource( 1 )
 [node name="crt" type="CanvasLayer" parent="."]
 follow_viewport_enable = true
 
+[node name="UI" type="Control" parent="crt"]
+margin_right = 40.0
+margin_bottom = 40.0
+theme = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Control" parent="crt/UI"]
+margin_left = -15.0
+margin_top = -22.0
+margin_right = 25.0
+margin_bottom = 18.0
+
+[node name="Label" type="Label" parent="crt/UI/Score"]
+margin_left = -331.0
+margin_top = -349.0
+margin_right = -281.0
+margin_bottom = -299.0
+rect_min_size = Vector2( 50, 50 )
+rect_scale = Vector2( 4, 4 )
+text = "Score:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Points" type="Label" parent="crt/UI/Score"]
+margin_left = -169.0
+margin_top = -344.0
+margin_right = -119.0
+margin_bottom = -332.0
+rect_min_size = Vector2( 50, 0 )
+rect_scale = Vector2( 4, 4 )
+text = "0"
+
+[node name="Message" type="Control" parent="crt/UI"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ColorRect" type="ColorRect" parent="crt"]
 material = SubResource( 2 )
 margin_left = -402.0
@@ -311,10 +354,10 @@ margin_bottom = 40.252
 color = Color( 0, 0, 0, 1 )
 
 [node name="ColorRect3" type="ColorRect" parent="crt/ColorRect"]
-margin_left = -21.1
-margin_top = -39.65
-margin_right = 18.9
-margin_bottom = 0.35001
+margin_left = -20.6
+margin_top = -39.95
+margin_right = 19.4
+margin_bottom = 0.0500107
 rect_scale = Vector2( 2, 1 )
 color = Color( 0, 0, 0, 1 )
 
@@ -330,6 +373,7 @@ __meta__ = {
 }
 
 [node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
 margin_left = -506.288
 margin_top = -524.673
 margin_right = 493.712
@@ -357,12 +401,12 @@ position = Vector2( -37.7667, 182.846 )
 scale = Vector2( 2, 2 )
 
 [node name="Sprite" type="Sprite" parent="Bg"]
-position = Vector2( 14.8834, -96.923 )
-scale = Vector2( 3, 3 )
+position = Vector2( 15.8834, -101.423 )
+scale = Vector2( 3.2, 3.2 )
 texture = ExtResource( 6 )
 
 [node name="drum" parent="." instance=ExtResource( 5 )]
-position = Vector2( -55.4365, -70.5556 )
+position = Vector2( -79, 6 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="buttons" type="Node2D" parent="."]
@@ -421,7 +465,7 @@ stream = SubResource( 6 )
 
 [node name="Wrong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
-volume_db = -12.0
+volume_db = -16.0
 pitch_scale = 0.3
 
 [connection signal="midi_event" from="MidiPlayer" to="." method="_on_midi_event"]
