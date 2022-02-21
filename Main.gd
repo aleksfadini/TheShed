@@ -124,6 +124,9 @@ func _process(delta):
 			$Sample2.play()
 			$Sample3.play()
 			$Sample4.play()
+			
+	if Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_accept"):
+		get_tree().change_scene("res://Exit.tscn")
 
 func _on_midi_event(channel, event):
 #	print("event: ", event)
