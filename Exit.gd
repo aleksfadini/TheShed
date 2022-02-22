@@ -4,6 +4,7 @@ var delta_sum = 0
 func _ready():
 	$Instructions/InstructionsAnim.play("show")
 	$Instructions/Arrows/Score.text=str(Globals.score)
+	$Instructions/Arrows/Time.text=str(Globals.timer_tot) +" seconds"
 
 func _process(delta):
 	delta_sum += delta

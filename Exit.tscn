@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Exit.gd" type="Script" id=1]
 [ext_resource path="res://Themes/UITheme.tres" type="Theme" id=2]
@@ -261,37 +261,13 @@ shader_param/clip_warp = false
 shader_param/vignette_intensity = 0.1
 shader_param/vignette_opacity = 0.272
 
-[sub_resource type="Gradient" id=4]
-offsets = PoolRealArray( 0.224924, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
-
-[sub_resource type="GradientTexture" id=5]
-gradient = SubResource( 4 )
-
 [sub_resource type="Curve" id=6]
 max_value = 3.0
 _data = [ Vector2( 0, 1.09722 ), 0.0, 0.0, 0, 0, Vector2( 1, 1.72222 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=7]
-curve = SubResource( 6 )
-
-[sub_resource type="ParticlesMaterial" id=3]
-lifetime_randomness = 0.39
-emission_shape = 2
-emission_box_extents = Vector3( 20, 1, 1 )
-flag_disable_z = true
-direction = Vector3( 0, 0, 0 )
-spread = 180.0
-flatness = 1.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 30.0
-initial_velocity_random = 0.47
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-damping = 30.0
-damping_random = 0.42
-scale_curve = SubResource( 7 )
-color_ramp = SubResource( 5 )
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0.224924, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="Animation" id=8]
 loop = true
@@ -406,7 +382,7 @@ __meta__ = {
 [node name="StarsBg" parent="Control" instance=ExtResource( 3 )]
 
 [node name="Instructions" type="Control" parent="."]
-modulate = Color( 1, 1, 1, 0.00784314 )
+modulate = Color( 1, 1, 1, 0.567861 )
 margin_right = 40.0
 margin_bottom = 40.0
 theme = ExtResource( 2 )
@@ -423,18 +399,30 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Particles2D" type="Particles2D" parent="Instructions/Arrows"]
-position = Vector2( 190, -223 )
+[node name="Particles2D" type="CPUParticles2D" parent="Instructions/Arrows"]
+position = Vector2( 174, -271 )
 scale = Vector2( 4, 4 )
+emitting = false
 preprocess = 1.0
-process_material = SubResource( 3 )
+lifetime_randomness = 0.39
 texture = ExtResource( 5 )
+emission_shape = 2
+emission_rect_extents = Vector2( 20, 1 )
+direction = Vector2( 0, 0 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 30.0
+initial_velocity_random = 0.47
+damping = 30.0
+damping_random = 0.42
+scale_amount_curve = SubResource( 6 )
+color_ramp = SubResource( 4 )
 
 [node name="Label2" type="Label" parent="Instructions/Arrows"]
-margin_left = 7.0
-margin_top = -434.0
-margin_right = 137.0
-margin_bottom = -386.0
+margin_left = -32.0
+margin_top = -431.0
+margin_right = 108.0
+margin_bottom = -383.0
 rect_scale = Vector2( 3, 3 )
 text = "Congratulations!
 Your finale score is:"
@@ -445,10 +433,11 @@ __meta__ = {
 }
 
 [node name="Score" type="Label" parent="Instructions/Arrows"]
-margin_left = -18.0
-margin_top = -265.0
-margin_right = 82.0
-margin_bottom = -217.0
+self_modulate = Color( 0, 1, 0.0156863, 1 )
+margin_left = -23.0
+margin_top = -302.0
+margin_right = 77.0
+margin_bottom = -282.0
 rect_scale = Vector2( 4, 4 )
 text = "0"
 align = 1
@@ -457,12 +446,38 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label4" type="Label" parent="Instructions/Arrows"]
+margin_left = -33.0
+margin_top = -202.0
+margin_right = 107.0
+margin_bottom = -154.0
+rect_scale = Vector2( 3, 3 )
+text = "Total time:"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Time" type="Label" parent="Instructions/Arrows"]
+margin_left = -32.0
+margin_top = -154.0
+margin_right = 108.0
+margin_bottom = -106.0
+rect_scale = Vector2( 3, 3 )
+text = "0 Seconds"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Label" type="Label" parent="Instructions/Arrows"]
 modulate = Color( 0.0313726, 1, 0.180392, 1 )
-margin_left = -43.0
-margin_top = -100.0
-margin_right = 113.0
-margin_bottom = -52.0
+margin_left = -83.0
+margin_top = -86.0
+margin_right = 97.0
+margin_bottom = -38.0
 rect_scale = Vector2( 3, 3 )
 text = "Your score has been saved."
 align = 1
@@ -472,10 +487,10 @@ __meta__ = {
 }
 
 [node name="Label3" type="Label" parent="Instructions/Arrows"]
-margin_left = 9.0
-margin_top = -40.0
-margin_right = 129.0
-margin_bottom = 8.00002
+margin_left = -91.0
+margin_top = 8.0
+margin_right = 89.0
+margin_bottom = 56.0
 rect_scale = Vector2( 3, 3 )
 text = "press SPACE to try again"
 align = 1
