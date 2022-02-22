@@ -12,7 +12,6 @@ var score_tot=0
 var play_note = true
 
 var delta_sum_ := 0.0
-
 var left := []
 
 onready var stuff := {
@@ -65,14 +64,8 @@ func _ready() -> void:
 	if play_note:
 		$music.stream=playNoteTrack
 		mute_all()
+	Globals.reset_score()
 	update_score()
-#	mute_all()
-#	$music.play()
-#	$Sample1.play()
-#	$Sample2.play()
-#	$Sample3.play()
-#	$Sample4.play()
-
 
 func _process(delta):
 	delta_sum_ += delta
@@ -177,16 +170,6 @@ func mute_all():
 
 func update_score(score=0):
 	score_tot+=score
+	Globals.score=score_tot
+	print("global score", Globals.score)
 	$crt/UI/Score/Points.text=str(score_tot)
-	
-#func unmute_sound_by_nr(nr=1):
-#	get_node("Sample"+str(nr)).play()
-#	var new_timer=Timer.new()
-#	$Timers.add_child(new_timer)
-#	new_timer.wait_time=0.5
-#	new_timer.connect("timeout", self, "note_expired", [nr])
-#	new_timer.start()
-#
-#func note_expired(nr):
-	
-	
