@@ -460,6 +460,37 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="MegaTitle" type="Control" parent="Titles/SlideFromUp"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Colors" type="Timer" parent="Titles/SlideFromUp/MegaTitle"]
+one_shot = true
+autostart = true
+
+[node name="The" type="Label" parent="Titles/SlideFromUp/MegaTitle"]
+margin_left = 347.0
+margin_top = 117.0
+margin_right = 387.0
+margin_bottom = 147.0
+rect_scale = Vector2( 10, 10 )
+text = "The
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shed" type="Label" parent="Titles/SlideFromUp/MegaTitle"]
+margin_left = 404.0
+margin_top = 193.0
+margin_right = 444.0
+margin_bottom = 205.0
+rect_scale = Vector2( 10, 10 )
+text = "Shed"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="SlideFromDown" type="Control" parent="Titles"]
 margin_right = 40.0
 margin_bottom = 40.0
@@ -469,3 +500,4 @@ position = Vector2( 642, 622 )
 zoom = Vector2( 2, 2 )
 
 [connection signal="animation_finished" from="Instructions/InstructionsAnim" to="Instructions/InstructionsAnim" method="_on_InstructionsAnim_animation_finished"]
+[connection signal="timeout" from="Titles/SlideFromUp/MegaTitle/Colors" to="." method="_on_Colors_timeout"]
