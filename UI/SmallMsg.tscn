@@ -87,7 +87,7 @@ tracks/0/keys = {
 script = ExtResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
-scale = Vector2( 2, 2 )
+scale = Vector2( 3, 3 )
 emitting = false
 amount = 32
 lifetime = 2.0

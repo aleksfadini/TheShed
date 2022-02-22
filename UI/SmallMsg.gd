@@ -20,8 +20,10 @@ func show_text(text="PERFECT!!!"):
 	$text/Label.text=text
 	$LabelFade.play("show")
 	if text=="miss":
+		$text/Label.rect_position.y+=30
 		$LabelMove.play("go_down")
 	else:
+		$text/Label.rect_position.y-=40
 		$LabelMove.play("go_up")
 	if text=="YEAH!":
 		$Particles2D.show()

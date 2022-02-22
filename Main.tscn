@@ -56,10 +56,10 @@ __meta__ = {
 }
 
 [node name="Points" type="Label" parent="crt/UI/Score"]
-margin_left = -172.0
-margin_top = -288.0
-margin_right = -122.0
-margin_bottom = -276.0
+margin_left = -166.0
+margin_top = -290.0
+margin_right = -116.0
+margin_bottom = -278.0
 rect_min_size = Vector2( 50, 0 )
 rect_scale = Vector2( 4, 4 )
 text = "0"
@@ -83,13 +83,16 @@ __meta__ = {
 }
 
 [node name="Points" type="Label" parent="crt/UI/Time"]
-margin_left = -173.0
-margin_top = -343.0
-margin_right = -123.0
-margin_bottom = -331.0
+margin_left = -176.0
+margin_top = -347.0
+margin_right = -126.0
+margin_bottom = -335.0
 rect_min_size = Vector2( 50, 0 )
 rect_scale = Vector2( 4, 4 )
 text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ExitMsg" type="Control" parent="crt/UI"]
 margin_left = -15.0
@@ -199,6 +202,9 @@ exp_time = 0.4
 note_nr = 4
 exp_time = 0.4
 
+[node name="PlayTimer" type="Timer" parent="Timers"]
+autostart = true
+
 [node name="Sample1" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 7 )
 
@@ -218,3 +224,4 @@ pitch_scale = 0.3
 
 [connection signal="midi_event" from="MidiPlayer" to="." method="_on_midi_event"]
 [connection signal="midi_event" from="midi2" to="." method="_on_midi2_event"]
+[connection signal="timeout" from="Timers/PlayTimer" to="." method="_on_PlayTimer_timeout"]

@@ -8,6 +8,7 @@ var miss_points=-2
 var early_points=-2
 var wut_points=-4
 var score_tot=0
+var timer_tot=0
 
 var play_note = true
 
@@ -45,13 +46,13 @@ var animation := {
 	36: {
 		"call": "kick",
 	},
-	37: {
+	38: {
 		"call": "snare",
 	},
-	38: {
+	42: {
 		"call": "hat_closed",
 	},
-	39: {
+	41: {
 		"call": "hat_open",
 	}
 }
@@ -76,7 +77,7 @@ func _process(delta):
 				if s.queue.front().test_hit(delta_sum_):
 #					s.node.perfect()
 					s.queue.pop_front().hit(s.node.global_position)
-					perfect(s.node.global_position)
+					perfect(s.node.global_position,s.color)
 					print("hit")
 					if play_note:
 						var node_nr=1
@@ -147,8 +148,8 @@ func _on_midi2_event(channel, event):
 		if a and event.type == 1:
 			$drum.call(a.call)
 
-func perfect(glo_pos):
-	show_text(glo_pos,"YEAH!")
+func perfect(glo_pos,color):
+	show_text(glo_pos,"YEAH!",color)
 
 func early(glo_pos):
 	show_text(glo_pos,"early")
@@ -156,10 +157,12 @@ func early(glo_pos):
 func miss(glo_pos):
 	show_text(glo_pos,"miss")
 	
-func show_text(glo_pos,text):
+func show_text(glo_pos,text,color=Color(1,1,1)):
 	var i = textInst.instance()
 	$Notifications.add_child(i)
 	i.global_position=glo_pos
+	if text=="YEAH!":
+		i.modulate=color
 	i.show_text(text)
 	
 func mute_all():
@@ -173,3 +176,10 @@ func update_score(score=0):
 	Globals.score=score_tot
 	print("global score", Globals.score)
 	$crt/UI/Score/Points.text=str(score_tot)
+
+
+func _on_PlayTimer_timeout():
+	timer_tot+=1
+	Globals.timer_tot=timer_tot
+	$crt/UI/Time/Points.text=str(timer_tot)
+	pass # Replace with function body.

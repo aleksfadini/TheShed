@@ -59,5 +59,12 @@ texture = ExtResource( 8 )
 texture = ExtResource( 7 )
 
 [node name="EyesTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
 
 [node name="SticksTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="EyesTimer" to="." method="_on_EyesTimer_timeout"]
+[connection signal="timeout" from="SticksTimer" to="." method="_on_SticksTimer_timeout"]
