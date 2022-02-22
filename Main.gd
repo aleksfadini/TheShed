@@ -12,6 +12,8 @@ var timer_tot=0
 
 var play_note = true
 
+var streak=0
+
 var delta_sum_ := 0.0
 var left := []
 
@@ -50,10 +52,10 @@ var animation := {
 		"call": "snare",
 	},
 	42: {
-		"call": "hat_closed",
+		"call": "snare",
 	},
 	41: {
-		"call": "hat_open",
+		"call": "kick",
 	}
 }
 
@@ -88,12 +90,15 @@ func _process(delta):
 							"right": node_nr=4
 						$Timers.get_node("Exp"+str(node_nr)).start_expiration()
 						update_score(yeah_points)
+						update_streak(1)
 				else:
 					update_score(early_points)
+					update_streak(0)
 					early(s.node.global_position)
 					$Wrong.play()
 					print("TOO EARLY")
 			else:
+				update_streak(0)
 				update_score(wut_points)
 				print("WUT??")
 				
@@ -102,6 +107,7 @@ func _process(delta):
 				s.queue.pop_front().miss()
 				miss(s.node.global_position)
 				update_score(miss_points)
+				update_streak(0)
 				print("miss")
 
 	for s in stuff.values():
@@ -182,4 +188,20 @@ func _on_PlayTimer_timeout():
 	timer_tot+=1
 	Globals.timer_tot=timer_tot
 	$crt/UI/Time/Points.text=str(timer_tot)
-	pass # Replace with function body.
+
+func update_streak(nr=0):
+	if nr==0:
+		streak=0
+	else:
+		streak+=nr
+	if streak==3:
+		show_msg("3x!!! +10 points!",1)
+	if streak==5:
+		show_msg("5x!!! +20 points!",2)
+	if streak==10:
+		show_msg("OMG 10x!!! +50 points!",3)
+	if streak==5:
+		show_msg("WTF 20x!!! +200 points!",4)
+#	if
+func show_msg(text_msg,lvl=1):
+	pass
