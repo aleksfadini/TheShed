@@ -204,4 +204,5 @@ func update_streak(nr=0):
 		show_msg("WTF 20x!!! +200 points!",4)
 #	if
 func show_msg(text_msg,lvl=1):
+	
 	pass
