@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://samples/Play Notes Off/TackAndPlayer.ogg" type="AudioStream" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://graphics/BassistInstrumentSpaceBassT4.png" type="Texture" id=21]
 [ext_resource path="res://graphics/BassistEyes01.png" type="Texture" id=22]
 [ext_resource path="res://graphics/HarmonistEyes01.png" type="Texture" id=23]
+[ext_resource path="res://Musicians.gd" type="Script" id=24]
 
 [sub_resource type="Curve" id=9]
 max_value = 3.0
@@ -72,7 +73,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.7, 0.8, 0.9, 1 ),
 "transitions": PoolRealArray( 0.5, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 7, 7 ), Vector2( 5, 5 ), Vector2( 6, 6 ), Vector2( 5, 5 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 6, 6 ), Vector2( 4, 4 ), Vector2( 6, 6 ), Vector2( 5, 5 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Label:modulate")
@@ -100,7 +101,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.7, 0.8, 0.9, 1 ),
 "transitions": PoolRealArray( 0.5, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 9, 9 ), Vector2( 7, 7 ), Vector2( 10, 10 ), Vector2( 8, 8 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 7, 7 ), Vector2( 5, 5 ), Vector2( 7, 7 ), Vector2( 6, 6 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Label:modulate")
@@ -128,7 +129,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.7, 0.8, 0.9, 1 ),
 "transitions": PoolRealArray( 0.5, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 13, 13 ), Vector2( 11, 11 ), Vector2( 14, 14 ), Vector2( 12, 12 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 8, 8 ), Vector2( 6, 6 ), Vector2( 8, 8 ), Vector2( 7, 7 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Label:modulate")
@@ -156,7 +157,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.7, 0.8, 0.9, 1 ),
 "transitions": PoolRealArray( 0.5, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 19, 19 ), Vector2( 17, 17 ), Vector2( 20, 20 ), Vector2( 18, 18 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 9, 9 ), Vector2( 7, 7 ), Vector2( 9, 9 ), Vector2( 8, 8 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Label:modulate")
@@ -198,10 +199,13 @@ __meta__ = {
 }
 
 [node name="Score" type="Control" parent="crt/UI"]
-margin_left = -15.0
-margin_top = -22.0
-margin_right = 25.0
-margin_bottom = 18.0
+margin_left = -14.0
+margin_top = -33.0
+margin_right = 26.0
+margin_bottom = 7.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="crt/UI/Score"]
 margin_left = -334.0
@@ -225,10 +229,10 @@ rect_scale = Vector2( 4, 4 )
 text = "0"
 
 [node name="Time" type="Control" parent="crt/UI"]
-margin_left = -15.0
-margin_top = -22.0
-margin_right = 25.0
-margin_bottom = 18.0
+margin_left = -14.0
+margin_top = -33.0
+margin_right = 26.0
+margin_bottom = 7.0
 
 [node name="Label" type="Label" parent="crt/UI/Time"]
 margin_left = -335.0
@@ -255,10 +259,10 @@ __meta__ = {
 }
 
 [node name="ExitMsg" type="Control" parent="crt/UI"]
-margin_left = -15.0
-margin_top = -22.0
-margin_right = 25.0
-margin_bottom = 18.0
+margin_left = -10.0
+margin_top = -43.0
+margin_right = 30.0
+margin_bottom = -3.0
 
 [node name="Label" type="Label" parent="crt/UI/ExitMsg"]
 margin_left = -32.0
@@ -319,6 +323,7 @@ texture = ExtResource( 6 )
 [node name="Musicians" type="Node2D" parent="."]
 position = Vector2( -79, 6 )
 scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 24 )
 
 [node name="Bassist" type="Node2D" parent="Musicians"]
 position = Vector2( 256, -500 )
@@ -376,6 +381,10 @@ texture = ExtResource( 15 )
 modulate = Color( 0, 0, 0, 1 )
 self_modulate = Color( 1, 1, 1, 0.333333 )
 texture = ExtResource( 17 )
+
+[node name="BandAnim" type="Timer" parent="Musicians"]
+wait_time = 0.3
+autostart = true
 
 [node name="drum" parent="." instance=ExtResource( 5 )]
 position = Vector2( -79, 6 )
@@ -492,4 +501,5 @@ pitch_scale = 0.3
 
 [connection signal="midi_event" from="MidiPlayer" to="." method="_on_midi_event"]
 [connection signal="midi_event" from="midi2" to="." method="_on_midi2_event"]
+[connection signal="timeout" from="Musicians/BandAnim" to="Musicians" method="_on_BandAnim_timeout"]
 [connection signal="timeout" from="Timers/PlayTimer" to="." method="_on_PlayTimer_timeout"]

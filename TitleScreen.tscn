@@ -684,6 +684,7 @@ zoom = Vector2( 2, 2 )
 
 [node name="Bumper" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+volume_db = -11.0
 
 [connection signal="animation_finished" from="Instructions/InstructionsAnim" to="Instructions/InstructionsAnim" method="_on_InstructionsAnim_animation_finished"]
 [connection signal="timeout" from="Titles/SlideFromUp/MegaTitle/Colors" to="." method="_on_Colors_timeout"]

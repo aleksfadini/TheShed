@@ -195,19 +195,19 @@ func update_streak(nr=0):
 	else:
 		streak+=nr
 	if streak==3:
-		show_msg("3x!!!",1)
+		show_msg("Streak\n3x!!!",1)
 		update_score(10)
 	if streak==5:
-		show_msg("5x!!!",2)
+		show_msg("Streak\n5x!!!",2)
 		update_score(20)
 	if streak==10:
-		show_msg("10x!!!",3)
+		show_msg("Streak\n10x!!!",3)
 		update_score(50)
 	if streak==20:
-		show_msg("20x!!!",4)
+		show_msg("Streak\n20x!!!",4)
 		update_score(200)
 	if streak==50:
-		show_msg("50x!!",5)
+		show_msg("Streak\n50x!!",5)
 		update_score(5000)
 #	if
 func show_msg(text_msg,lvl=1):
@@ -225,5 +225,6 @@ func show_msg(text_msg,lvl=1):
 			$Msg/Cont/MiniParticles.emitting=true
 			$Msg/Cont/BecomeBig.play("Lev4")
 		5:
+			$Msg/Cont/MiniParticles.emitting=true
 			$Msg/Cont/BecomeBig.play("Lev5")
 	pass
