@@ -15,7 +15,9 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_accept"):
-		get_tree().change_scene("res://Main.tscn")
+		$Bumper.play()
+		$CanvasLayer/FadeScreen.show()
+		$CanvasLayer/FadeScreen/Fade.play("fadeReady")
 		# Move right.
 	$Titles/SlideFromUp/MegaTitle/The.rect_scale=lerp($Titles/SlideFromUp/MegaTitle/The.rect_scale,Vector2(10,10),delta*20)
 	$Titles/SlideFromUp/MegaTitle/Shed.rect_scale=lerp($Titles/SlideFromUp/MegaTitle/Shed.rect_scale,Vector2(15,12),delta*20)
@@ -34,3 +36,9 @@ func _on_Colors_timeout():
 		$Titles/SlideFromUp/MegaTitle/The.rect_scale*=new_size
 	else:
 		$Titles/SlideFromUp/MegaTitle/Shed.rect_scale*=new_size
+
+
+func _on_Bumper_finished():
+	get_tree().change_scene("res://Main.tscn")
+	
+	pass # Replace with function body.

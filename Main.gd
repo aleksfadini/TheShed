@@ -30,13 +30,13 @@ onready var stuff := {
 		"node": get_node("buttons/up"),
 		"queue": []
 	},
-	42: {
+	41: {
 		"color": Color.blue,
 		"key": "down",
 		"node": get_node("buttons/down"),
 		"queue": []
 	},
-	41: {
+	42: {
 		"color": Color.red,
 		"key": "right",
 		"node": get_node("buttons/right"),
@@ -51,11 +51,11 @@ var animation := {
 	38: {
 		"call": "snare",
 	},
-	42: {
-		"call": "snare",
-	},
 	41: {
 		"call": "kick",
+	},
+	42: {
+		"call": "snare",
 	}
 }
 
@@ -86,8 +86,8 @@ func _process(delta):
 						match s.key:
 							"left": node_nr=1
 							"up": node_nr=2
-							"down": node_nr=3
-							"right": node_nr=4
+							"down": node_nr=4
+							"right": node_nr=3
 						$Timers.get_node("Exp"+str(node_nr)).start_expiration()
 						update_score(yeah_points)
 						update_streak(1)

@@ -1,10 +1,12 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://Themes/UITheme.tres" type="Theme" id=2]
 [ext_resource path="res://StarsBg.tscn" type="PackedScene" id=3]
 [ext_resource path="res://graphics/StarsBgGradient.png" type="Texture" id=4]
 [ext_resource path="res://graphics/SolTunesBrandFinalWithShadow.png" type="Texture" id=5]
+[ext_resource path="res://audio/Bumper.ogg" type="AudioStream" id=6]
+[ext_resource path="res://graphics/Logo.png" type="Texture" id=7]
 
 [sub_resource type="Shader" id=1]
 code = "/*
@@ -261,6 +263,46 @@ shader_param/clip_warp = false
 shader_param/vignette_intensity = 0.2
 shader_param/vignette_opacity = 0.272
 
+[sub_resource type="Animation" id=10]
+resource_name = "fadeReady"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("LoadingBg:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.5, 1.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
+}
+
 [sub_resource type="Animation" id=4]
 resource_name = "pulse"
 loop = true
@@ -443,6 +485,48 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="FadeScreen" type="Control" parent="CanvasLayer"]
+visible = false
+margin_left = 285.0
+margin_top = 346.0
+margin_right = 325.0
+margin_bottom = 386.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadingBg" type="ColorRect" parent="CanvasLayer/FadeScreen"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -285.0
+margin_top = -346.0
+margin_right = 915.0
+margin_bottom = 454.0
+color = Color( 0, 0.0823529, 0.4, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/FadeScreen/LoadingBg"]
+position = Vector2( 514, 247 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="CanvasLayer/FadeScreen"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -10.0
+margin_top = 46.0
+margin_right = 71.0
+margin_bottom = 60.0
+rect_scale = Vector2( 6, 6 )
+theme = ExtResource( 2 )
+text = "GET READY!!!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fade" type="AnimationPlayer" parent="CanvasLayer/FadeScreen"]
+anims/fadeReady = SubResource( 10 )
+
 [node name="Control" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
@@ -598,5 +682,9 @@ anims/SlideIn = SubResource( 9 )
 position = Vector2( 642, 622 )
 zoom = Vector2( 2, 2 )
 
+[node name="Bumper" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
 [connection signal="animation_finished" from="Instructions/InstructionsAnim" to="Instructions/InstructionsAnim" method="_on_InstructionsAnim_animation_finished"]
 [connection signal="timeout" from="Titles/SlideFromUp/MegaTitle/Colors" to="." method="_on_Colors_timeout"]
+[connection signal="finished" from="Bumper" to="." method="_on_Bumper_finished"]
