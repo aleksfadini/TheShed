@@ -1,7 +1,7 @@
 extends Node2D
 
 onready var textInst=load("res://UI/SmallMsg.tscn")
-onready var playNoteTrack=load("res://samples/Play Notes On/Backing Track.ogg")
+onready var playNoteTrack=Assets.playNoteTrack1
 
 var yeah_points=10
 var miss_points=-2
@@ -9,6 +9,8 @@ var early_points=-2
 var wut_points=-4
 var score_tot=0
 var timer_tot=0
+
+var countdown=0
 
 var play_note = true
 
@@ -69,6 +71,7 @@ func _ready() -> void:
 		mute_all()
 	Globals.reset_score()
 	update_score()
+	$crt/UI/Health.update_health()
 
 func _process(delta):
 	delta_sum_ += delta
@@ -113,6 +116,7 @@ func _process(delta):
 	for s in stuff.values():
 		s.node.pressed = Input.is_action_pressed(s.key)
 	if delta_sum_ >= 0.1 and not $MidiPlayer.playing:
+#		$Timers/CountdownTimer.start()
 		$MidiPlayer.play()
 	if delta_sum_ >= 1.1 and not $midi2.playing:
 		$midi2.play()
@@ -182,6 +186,14 @@ func update_score(score=0):
 	Globals.score=score_tot
 	print("global score", Globals.score)
 	$crt/UI/Score/Points.text=str(score_tot)
+	if score==miss_points or score== early_points:
+		Globals.hearts_halfs-=1
+		$crt/UI/Health.update_health()
+	if score==wut_points:
+		Globals.hearts_halfs-=2
+		$crt/UI/Health.update_health()
+	if Globals.hearts_halfs<=0:
+		get_tree().change_scene("res://Exit.tscn")
 
 
 func _on_PlayTimer_timeout():
@@ -227,4 +239,33 @@ func show_msg(text_msg,lvl=1):
 		5:
 			$Msg/Cont/MiniParticles.emitting=true
 			$Msg/Cont/BecomeBig.play("Lev5")
+	pass
+
+
+func _on_CountdownTimer_timeout():
+	if countdown == 0:
+		countdown_msg("1...")
+		$Timers/CountdownTimer.wait_time=1
+	if countdown == 1:
+		countdown_msg("2...")
+		$Timers/CountdownTimer.wait_time=1
+	if countdown == 2:
+		countdown_msg("1,")		
+		$Timers/CountdownTimer.wait_time=0.5
+	if countdown == 3:
+		countdown_msg("2,")
+		$Timers/CountdownTimer.wait_time=0.5
+	if countdown == 4:
+		countdown_msg("3,")
+		$Timers/CountdownTimer.wait_time=0.5
+	if countdown == 5:
+		countdown_msg("4!")	
+		$Timers/CountdownTimer.wait_time=0.5
+	countdown+=1
+	$Timers/CountdownTimer.start()
+	
+	pass # Replace with function body.
+
+func countdown_msg(text):
+	$Notifications/LvlMessage.show_msg(text)
 	pass

@@ -52,6 +52,7 @@ config/icon="res://graphics/Logo.png"
 [autoload]
 
 Globals="*res://Globals.gd"
+Assets="*res://assets.gd"
 
 [display]
 
