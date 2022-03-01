@@ -1,7 +1,7 @@
 extends Node2D
 
 onready var textInst=load("res://UI/SmallMsg.tscn")
-onready var playNoteTrack=Assets.playNoteTrack1
+var playNoteTrack=Assets.playNoteTrack1
 
 var yeah_points=10
 var miss_points=-2
@@ -18,6 +18,11 @@ var streak=0
 
 var delta_sum_ := 0.0
 var left := []
+
+var stage=1
+
+
+var spacebar_active=false
 
 onready var stuff := {
 	36: {
@@ -66,9 +71,10 @@ var animation_queue := []
 func _ready() -> void:
 	for s in stuff.values():
 		s.node.color = s.color
-	if play_note:
-		$music.stream=playNoteTrack
-		mute_all()
+	setup_stage()
+#	if play_note:
+#	$music.stream=playNoteTrack
+	mute_all()
 	Globals.reset_score()
 	update_score()
 	$crt/UI/Health.update_health()
@@ -95,18 +101,20 @@ func _process(delta):
 						update_score(yeah_points)
 						update_streak(1)
 				else:
+					play_random_clink()
 					update_score(early_points)
 					update_streak(0)
 					early(s.node.global_position)
-					$Wrong.play()
 					print("TOO EARLY")
 			else:
+				play_random_clink()
 				update_streak(0)
 				update_score(wut_points)
 				print("WUT??")
 				
 		if not s.queue.empty():
 			if s.queue.front().test_miss(delta_sum_):
+				play_random_clink()
 				s.queue.pop_front().miss()
 				miss(s.node.global_position)
 				update_score(miss_points)
@@ -115,12 +123,13 @@ func _process(delta):
 
 	for s in stuff.values():
 		s.node.pressed = Input.is_action_pressed(s.key)
-	if delta_sum_ >= 0.1 and not $MidiPlayer.playing:
+	if delta_sum_ >= 0.1 and not $midi1.playing:
 #		$Timers/CountdownTimer.start()
-		$MidiPlayer.play()
+		$midi1.play()
 	if delta_sum_ >= 1.1 and not $midi2.playing:
 		$midi2.play()
 	if delta_sum_ >= 1.1 and not $music.playing:
+		spacebar_active=true
 		$music.play()
 #	if delta_sum_ >= 1.04 and not $Sample1.playing:
 		if play_note:
@@ -128,9 +137,9 @@ func _process(delta):
 			$Sample2.play()
 			$Sample3.play()
 			$Sample4.play()
-			
 	if Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_accept"):
-		get_tree().change_scene("res://Exit.tscn")
+		if spacebar_active:
+			get_tree().change_scene("res://Exit.tscn")
 
 func _on_midi_event(channel, event):
 #	print("event: ", event)
@@ -195,7 +204,6 @@ func update_score(score=0):
 	if Globals.hearts_halfs<=0:
 		get_tree().change_scene("res://Exit.tscn")
 
-
 func _on_PlayTimer_timeout():
 	timer_tot+=1
 	Globals.timer_tot=timer_tot
@@ -221,7 +229,7 @@ func update_streak(nr=0):
 	if streak==50:
 		show_msg("Streak\n50x!!",5)
 		update_score(5000)
-#	if
+
 func show_msg(text_msg,lvl=1):
 	$Msg/Cont/Label.text=text_msg
 	match lvl:
@@ -239,8 +247,6 @@ func show_msg(text_msg,lvl=1):
 		5:
 			$Msg/Cont/MiniParticles.emitting=true
 			$Msg/Cont/BecomeBig.play("Lev5")
-	pass
-
 
 func _on_CountdownTimer_timeout():
 	if countdown == 0:
@@ -263,9 +269,46 @@ func _on_CountdownTimer_timeout():
 		$Timers/CountdownTimer.wait_time=0.5
 	countdown+=1
 	$Timers/CountdownTimer.start()
-	
-	pass # Replace with function body.
 
 func countdown_msg(text):
 	$Notifications/LvlMessage.show_msg(text)
 	pass
+
+func play_random_clink():
+#	print("clinks: ", Assets.clinks)
+	$Wrong.stream=Assets.clinks[randi() % Assets.clinks.size()]
+#	$Wrong.stream=Assets.clinks[1]
+	$Wrong.play()
+
+func setup_stage():
+	stage=Globals.next_stage
+	if stage==1:
+		$midi1.file=Assets.midiTrack1
+		$midi2.file=Assets.midiTrack1
+		$Sample1.stream=Assets.kickTrack1
+		$Sample2.stream=Assets.snareTrack1
+		$Sample3.stream=Assets.hatsTrack1
+		$Sample4.stream=Assets.tomTrack1
+		$music.stream=Assets.playNoteTrack1
+	elif stage==2:
+		$midi1.file=Assets.midiTrack2
+		$midi2.file=Assets.midiTrack2
+		$Sample1.stream=Assets.kickTrack2
+		$Sample2.stream=Assets.snareTrack2
+		$Sample3.stream=Assets.hatsTrack2
+		$Sample4.stream=Assets.tomTrack2
+		$music.stream=Assets.playNoteTrack2
+		$Bg/Sprite.texture=Assets.bgStage2
+	elif stage==3:
+		$midi1.file=Assets.midiTrack3
+		$midi2.file=Assets.midiTrack3
+		$Sample1.stream=Assets.kickTrack3
+		$Sample2.stream=Assets.snareTrack3
+		$Sample3.stream=Assets.hatsTrack3
+		$Sample4.stream=Assets.tomTrack3
+		$music.stream=Assets.playNoteTrack3
+		$Bg/Sprite.texture=Assets.bgStage2
+
+func _on_music_finished():
+	if stage==1:
+		pass # Replace with function body.
