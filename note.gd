@@ -3,7 +3,13 @@ extends Sprite
 export(float)  var expected_time
 export(Color)  var color setget set_color
 
+var delay=600
+
 var state_ := ""
+
+func _ready():
+	if Globals.next_stage==2:
+		delay=680
 
 func set_color(value:Color) -> void:
 	color = value
@@ -31,8 +37,8 @@ func _process(delta):
 		queue_free()
 		return
 
-	global_position.y += delta * 600.0
+	global_position.y += delta * delay
 		
 	if state_ == "miss":
-		if global_position.y > 600.0:
+		if global_position.y > delay:
 			queue_free()

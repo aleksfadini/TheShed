@@ -69,9 +69,9 @@ var animation := {
 var animation_queue := []
 
 func _ready() -> void:
+	setup_stage()
 	for s in stuff.values():
 		s.node.color = s.color
-	setup_stage()
 #	if play_note:
 #	$music.stream=playNoteTrack
 	mute_all()
@@ -123,12 +123,15 @@ func _process(delta):
 
 	for s in stuff.values():
 		s.node.pressed = Input.is_action_pressed(s.key)
-	if delta_sum_ >= 0.1 and not $midi1.playing:
+#	if delta_sum_ >= 0.1 and not $midi1.playing:
+	if delta_sum_ >= 0.2 and not $midi1.playing:
 #		$Timers/CountdownTimer.start()
 		$midi1.play()
-	if delta_sum_ >= 1.1 and not $midi2.playing:
+#	if delta_sum_ >= 1.1 and not $midi2.playing:
+	if delta_sum_ >= 1.2 and not $midi2.playing:
 		$midi2.play()
-	if delta_sum_ >= 1.1 and not $music.playing:
+#	if delta_sum_ >= 1.1 and not $music.playing:
+	if delta_sum_ >= 1.2 and not $music.playing:
 		spacebar_active=true
 		$music.play()
 #	if delta_sum_ >= 1.04 and not $Sample1.playing:
@@ -144,12 +147,12 @@ func _process(delta):
 func _on_midi_event(channel, event):
 #	print("event: ", event)
 #	print("channel: ", channel)
-#	print("note: ", event.note)
+##	print("note: ", event.note)
 #	print("track name: ", channel.track_name)
 #	print("event type: ", event.type)
 #	print("------------------")
-	if channel.track_name == "Falcon":
-#		print("note: ", str(event.note))
+	if channel.track_name == "Falcon" or channel.track_name == "Falcon 2":
+		print("note: ", str(event.note))
 		var s = stuff.get(event.note)
 		if s and event.type == 1:
 			var i = preload("res://note.tscn").instance()
