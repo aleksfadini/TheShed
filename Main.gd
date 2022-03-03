@@ -11,16 +11,12 @@ var score_tot=0
 var timer_tot=0
 
 var countdown=0
-
 var play_note = true
-
 var streak=0
-
 var delta_sum_ := 0.0
 var left := []
 
 var stage=1
-
 
 var spacebar_active=false
 
@@ -81,7 +77,6 @@ func _ready() -> void:
 
 func _process(delta):
 	delta_sum_ += delta
-	
 	for s in stuff.values():
 		if Input.is_action_just_pressed(s.key):
 			if not s.queue.empty():
@@ -89,7 +84,7 @@ func _process(delta):
 #					s.node.perfect()
 					s.queue.pop_front().hit(s.node.global_position)
 					perfect(s.node.global_position,s.color)
-					print("hit")
+#					print("hit")
 					if play_note:
 						var node_nr=1
 						match s.key:
@@ -105,13 +100,12 @@ func _process(delta):
 					update_score(early_points)
 					update_streak(0)
 					early(s.node.global_position)
-					print("TOO EARLY")
+#					print("TOO EARLY")
 			else:
 				play_random_clink()
 				update_streak(0)
 				update_score(wut_points)
-				print("WUT??")
-				
+#				print("WUT??")
 		if not s.queue.empty():
 			if s.queue.front().test_miss(delta_sum_):
 				play_random_clink()
@@ -119,8 +113,7 @@ func _process(delta):
 				miss(s.node.global_position)
 				update_score(miss_points)
 				update_streak(0)
-				print("miss")
-
+#				print("miss")
 	for s in stuff.values():
 		s.node.pressed = Input.is_action_pressed(s.key)
 #	if delta_sum_ >= 0.1 and not $midi1.playing:
@@ -274,8 +267,7 @@ func _on_CountdownTimer_timeout():
 	$Timers/CountdownTimer.start()
 
 func countdown_msg(text):
-	$Notifications/LvlMessage.show_msg(text)
-	pass
+	$Notifications/BeginMsg.show_begin_msg(text)
 
 func play_random_clink():
 #	print("clinks: ", Assets.clinks)

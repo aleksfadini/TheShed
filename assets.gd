@@ -1,7 +1,6 @@
 extends Node
 
 var clinks=[]
-
 # audio assets
 var playNoteTrack1=load("res://samples/Stage1/Stage1_Backing Track.ogg")
 var playNoteTrack2=load("res://samples/Stage2/Stage2_Backing Track.ogg")
@@ -27,7 +26,6 @@ var midiTrack3="res://samples/Stage3/Stage3.mid"
 var bgStage2=load("res://graphics/BgNibiruCraters.png")
 var bgStage3=load("res://graphics/BgBlackRunCastle.png")
 
-
 func _ready():
 	randomize()
 	load_clinks()
@@ -36,8 +34,3 @@ func _ready():
 func load_clinks():
 	for each in 16:
 		clinks.append(load("res://samples/DrumClinks/DrumClink_"+str(each)+".ogg"))
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

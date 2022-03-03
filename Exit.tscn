@@ -425,7 +425,7 @@ margin_right = 108.0
 margin_bottom = -383.0
 rect_scale = Vector2( 3, 3 )
 text = "Congratulations!
-Your finale score is:"
+Your final score is:"
 align = 1
 autowrap = true
 __meta__ = {

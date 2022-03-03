@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Themes/UITheme.tres" type="Theme" id=1]
-[ext_resource path="res://LvlMessage.gd" type="Script" id=2]
+[ext_resource path="res://BeginMsg.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=2]
 resource_name = "disappear"
@@ -15,18 +15,6 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( -2, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../Bg:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
@@ -57,20 +45,8 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("../Bg:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
 
-[node name="LvlMessage" type="Control"]
+[node name="BeginMsg" type="Control"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -81,17 +57,6 @@ margin_right = 512.0
 margin_bottom = 300.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Bg" type="ColorRect" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-margin_left = -470.0
-margin_top = -395.0
-margin_right = 1530.0
-margin_bottom = 1105.0
-color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -111,7 +76,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Stage" type="Label" parent="Cont"]
+[node name="Label" type="Label" parent="Cont"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -122,24 +87,6 @@ margin_right = -66.3333
 margin_bottom = -62.6667
 rect_scale = Vector2( 5, 5 )
 text = "Stage
-"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Nr" type="Label" parent="Cont"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -108.333
-margin_top = -18.6667
-margin_right = -68.3333
-margin_bottom = 29.3333
-rect_scale = Vector2( 5, 5 )
-text = "1
-
 "
 align = 1
 __meta__ = {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://samples/Stage1/Stage1_Hats.ogg" type="AudioStream" id=2]
@@ -31,6 +31,7 @@
 [ext_resource path="res://LvlMessage.tscn" type="PackedScene" id=29]
 [ext_resource path="res://Heart.tscn" type="PackedScene" id=30]
 [ext_resource path="res://Health.gd" type="Script" id=31]
+[ext_resource path="res://BeginMsg.tscn" type="PackedScene" id=32]
 
 [sub_resource type="Curve" id=9]
 max_value = 3.0
@@ -547,6 +548,12 @@ margin_top = -605.0
 margin_right = 107.0
 margin_bottom = -5.0
 rect_scale = Vector2( 0.75, 0.75 )
+
+[node name="BeginMsg" parent="Notifications" instance=ExtResource( 32 )]
+margin_left = -1044.0
+margin_top = -622.0
+margin_right = -20.0
+margin_bottom = -22.0
 
 [node name="Timers" type="Node" parent="."]
 
