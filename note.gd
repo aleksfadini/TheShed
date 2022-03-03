@@ -2,22 +2,31 @@ extends Sprite
 
 export(float)  var expected_time
 export(Color)  var color setget set_color
-
-var delay=600
+#var early_buffer=0.01
+#var late_buffer=0.001
+var delay=800 # it was 600 then 660 the higher, the more you tend to hit early and arrows go faster
 
 var state_ := ""
 
 func _ready():
 	if Globals.next_stage==2:
-		delay=680
+		delay=920
 	if Globals.next_stage==3:
-		delay=680
+		delay=800 # was 1000
 
 func set_color(value:Color) -> void:
 	color = value
 	self_modulate = color
 
 func test_hit(time:float) -> bool:
+	#late
+#	if (time-expected_time)>0 and (time-expected_time) < late_buffer:
+#		return true
+#	else:
+#		#early
+#		if (time-expected_time) <= -early_buffer:
+#			return true
+		
 	if abs(expected_time - time) < 0.2:
 		return true
 	return false

@@ -3,7 +3,7 @@ extends Node
 var score = 0
 var timer_tot = 0
 var hearts_halfs=10
-var next_stage=2
+var next_stage=3
 
 func _ready():
 	reset_score()
@@ -11,4 +11,4 @@ func _ready():
 func reset_score():
 	score = 0
 	timer_tot = 0
-	hearts_halfs = 10
+	hearts_halfs = 80

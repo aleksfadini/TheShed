@@ -560,18 +560,14 @@ margin_bottom = -22.0
 
 [node name="Exp2" parent="Timers" instance=ExtResource( 8 )]
 note_nr = 2
-exp_time = 0.4
 
 [node name="Exp1" parent="Timers" instance=ExtResource( 8 )]
-exp_time = 0.4
 
 [node name="Exp3" parent="Timers" instance=ExtResource( 8 )]
 note_nr = 3
-exp_time = 0.4
 
 [node name="Exp4" parent="Timers" instance=ExtResource( 8 )]
 note_nr = 4
-exp_time = 0.4
 
 [node name="PlayTimer" type="Timer" parent="Timers"]
 autostart = true

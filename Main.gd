@@ -120,10 +120,10 @@ func _physics_process(delta):
 	if delta_sum_ >= 0.2 and not $midi1.playing:
 #		$Timers/CountdownTimer.start()
 		$midi1.play()
-#	if delta_sum_ >= 1.1 and not $midi2.playing:
+#	if delta_sum_ >= 1.0 and not $midi2.playing:
 	if delta_sum_ >= 1.2 and not $midi2.playing:
 		$midi2.play()
-#	if delta_sum_ >= 1.1 and not $music.playing:
+#	if delta_sum_ >= 1.0 and not $music.playing:
 	if delta_sum_ >= 1.2 and not $music.playing:
 		spacebar_active=true
 		$music.play()
@@ -140,8 +140,8 @@ func _physics_process(delta):
 func _on_midi_event(channel, event):
 #	print("event: ", event)
 #	print("channel: ", channel)
-##	print("note: ", event.note)
-#	print("track name: ", channel.track_name)
+#	print("note: ", event.note)
+	print("track name: ", channel.track_name)
 #	print("event type: ", event.type)
 #	print("------------------")
 	if channel.track_name == "Falcon" or channel.track_name == "Falcon 2":
@@ -150,7 +150,7 @@ func _on_midi_event(channel, event):
 		if s and event.type == 1:
 			var i = preload("res://note.tscn").instance()
 			add_child(i)
-			i.expected_time     = delta_sum_ + 1.0
+			i.expected_time     = delta_sum_ + 0.8
 			i.global_rotation   = s.node.global_rotation
 			i.global_position.y = -400
 			i.global_position.x = s.node.global_position.x
@@ -158,7 +158,7 @@ func _on_midi_event(channel, event):
 			s.queue.push_back(i)
 
 func _on_midi2_event(channel, event):
-	if channel.track_name == "Falcon":
+	if channel.track_name == "Falcon" or channel.track_name == "Falcon 2":
 		var a = animation.get(event.note)
 		if a and event.type == 1:
 			$drum.call(a.call)
@@ -302,7 +302,7 @@ func setup_stage():
 		$Sample3.stream=Assets.hatsTrack3
 		$Sample4.stream=Assets.tomTrack3
 		$music.stream=Assets.playNoteTrack3
-		$Bg/Sprite.texture=Assets.bgStage2
+		$Bg/Sprite.texture=Assets.bgStage3
 
 func _on_music_finished():
 	if stage==1:
