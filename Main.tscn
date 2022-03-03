@@ -1,7 +1,7 @@
 [gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
-[ext_resource path="res://samples/Stage1/Stage1_Hats.ogg" type="AudioStream" id=2]
+[ext_resource path="res://samples/Stage1/Stage1_100_Hats.ogg" type="AudioStream" id=2]
 [ext_resource path="res://addons/midi/MidiPlayer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://arrow.tscn" type="PackedScene" id=4]
 [ext_resource path="res://drum.tscn" type="PackedScene" id=5]
@@ -24,10 +24,10 @@
 [ext_resource path="res://graphics/BassistEyes01.png" type="Texture" id=22]
 [ext_resource path="res://graphics/HarmonistEyes01.png" type="Texture" id=23]
 [ext_resource path="res://Musicians.gd" type="Script" id=24]
-[ext_resource path="res://samples/Stage1/Stage1_Kick.ogg" type="AudioStream" id=25]
-[ext_resource path="res://samples/Stage1/Stage1_Backing Track.ogg" type="AudioStream" id=26]
-[ext_resource path="res://samples/Stage1/Stage1_Toms.ogg" type="AudioStream" id=27]
-[ext_resource path="res://samples/Stage1/Stage1_Snare.ogg" type="AudioStream" id=28]
+[ext_resource path="res://samples/Stage1/Stage1_100_Kick.ogg" type="AudioStream" id=25]
+[ext_resource path="res://samples/Stage1/Stage1_100_Backing Track.ogg" type="AudioStream" id=26]
+[ext_resource path="res://samples/Stage1/Stage1_100_Toms.ogg" type="AudioStream" id=27]
+[ext_resource path="res://samples/Stage1/Stage1_100_Snare.ogg" type="AudioStream" id=28]
 [ext_resource path="res://LvlMessage.tscn" type="PackedScene" id=29]
 [ext_resource path="res://Heart.tscn" type="PackedScene" id=30]
 [ext_resource path="res://Health.gd" type="Script" id=31]
@@ -543,6 +543,7 @@ color = Color( 0.890196, 0.14902, 0.14902, 1 )
 [node name="Notifications" type="Node" parent="."]
 
 [node name="LvlMessage" parent="Notifications" instance=ExtResource( 29 )]
+visible = false
 margin_left = -917.0
 margin_top = -605.0
 margin_right = 107.0

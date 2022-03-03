@@ -10,6 +10,8 @@ var state_ := ""
 func _ready():
 	if Globals.next_stage==2:
 		delay=680
+	if Globals.next_stage==3:
+		delay=680
 
 func set_color(value:Color) -> void:
 	color = value

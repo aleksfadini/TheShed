@@ -75,7 +75,7 @@ func _ready() -> void:
 	update_score()
 	$crt/UI/Health.update_health()
 
-func _process(delta):
+func _physics_process(delta):
 	delta_sum_ += delta
 	for s in stuff.values():
 		if Input.is_action_just_pressed(s.key):
