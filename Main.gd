@@ -17,6 +17,7 @@ var delta_sum_ := 0.0
 var left := []
 
 var stage=1
+#var test_stage_finished=true
 
 var spacebar_active=false
 
@@ -74,8 +75,10 @@ func _ready() -> void:
 	Globals.reset_score()
 	update_score()
 	$crt/UI/Health.update_health()
+#	if stage ==1:
+#		countdown=1
 
-func _physics_process(delta):
+func _process(delta):
 	delta_sum_ += delta
 	for s in stuff.values():
 		if Input.is_action_just_pressed(s.key):
@@ -117,14 +120,14 @@ func _physics_process(delta):
 	for s in stuff.values():
 		s.node.pressed = Input.is_action_pressed(s.key)
 #	if delta_sum_ >= 0.1 and not $midi1.playing:
-	if delta_sum_ >= 0.2 and not $midi1.playing:
+	if delta_sum_ >= 0.1 and not $midi1.playing:
 #		$Timers/CountdownTimer.start()
 		$midi1.play()
 #	if delta_sum_ >= 1.0 and not $midi2.playing:
-	if delta_sum_ >= 1.2 and not $midi2.playing:
+	if delta_sum_ >= 1.1 and not $midi2.playing:
 		$midi2.play()
 #	if delta_sum_ >= 1.0 and not $music.playing:
-	if delta_sum_ >= 1.2 and not $music.playing:
+	if delta_sum_ >= 1.1 and not $music.playing:
 		spacebar_active=true
 		$music.play()
 #	if delta_sum_ >= 1.04 and not $Sample1.playing:
@@ -136,6 +139,9 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_accept"):
 		if spacebar_active:
 			get_tree().change_scene("res://Exit.tscn")
+#	if $music.get_playback_position()>=5 and test_stage_finished:
+#		test_stage_finished=false
+#		_on_music_finished()
 
 func _on_midi_event(channel, event):
 #	print("event: ", event)
@@ -174,7 +180,7 @@ func miss(glo_pos):
 	
 func show_text(glo_pos,text,color=Color(1,1,1)):
 	var i = textInst.instance()
-	$Notifications.add_child(i)
+	$Notifications/HitNotifications.add_child(i)
 	i.global_position=glo_pos
 	if text=="YEAH!":
 		i.modulate=color
@@ -228,6 +234,7 @@ func update_streak(nr=0):
 
 func show_msg(text_msg,lvl=1):
 	$Msg/Cont/Label.text=text_msg
+	$Msg/Cont/MegaParticles.modulate=Color(1,1,1)
 	match lvl:
 		1:
 			$Msg/Cont/BecomeBig.play("Lev1")
@@ -235,34 +242,49 @@ func show_msg(text_msg,lvl=1):
 			$Msg/Cont/MiniParticles.emitting=true
 			$Msg/Cont/BecomeBig.play("Lev2")
 		3:
-			$Msg/Cont/MiniParticles.emitting=true
+			$Msg/Cont/MegaParticles.emitting=true
 			$Msg/Cont/BecomeBig.play("Lev3")
 		4:
-			$Msg/Cont/MiniParticles.emitting=true
+			$Msg/Cont/MegaParticles.emitting=true
 			$Msg/Cont/BecomeBig.play("Lev4")
 		5:
-			$Msg/Cont/MiniParticles.emitting=true
+			$Msg/Cont/MegaParticles.modulate=Color(1,0,1)
+			$Msg/Cont/MegaParticles.emitting=true
 			$Msg/Cont/BecomeBig.play("Lev5")
 
+func show_lvl_msg(text):
+	$Notifications/LvlMessage.show_lvl_msg(text)
+
 func _on_CountdownTimer_timeout():
+	var first_countdown=1.7
+	var second_countdown=1.0
+	var inter_countdowns=0.65
+	if stage == 2:
+		first_countdown=1.2
+		second_countdown=0.9
+		inter_countdowns=0.6
+	if stage == 3:
+		first_countdown=1.05
+		second_countdown=0.85
+		inter_countdowns=0.55
 	if countdown == 0:
 		countdown_msg("1...")
-		$Timers/CountdownTimer.wait_time=1
+		$Timers/CountdownTimer.wait_time=first_countdown
 	if countdown == 1:
 		countdown_msg("2...")
-		$Timers/CountdownTimer.wait_time=1
+		$Timers/CountdownTimer.wait_time=second_countdown
 	if countdown == 2:
-		countdown_msg("1,")		
-		$Timers/CountdownTimer.wait_time=0.5
+		countdown_msg("1,")
+		$Timers/CountdownTimer.wait_time=inter_countdowns
 	if countdown == 3:
 		countdown_msg("2,")
-		$Timers/CountdownTimer.wait_time=0.5
+		$Timers/CountdownTimer.wait_time=inter_countdowns
 	if countdown == 4:
 		countdown_msg("3,")
-		$Timers/CountdownTimer.wait_time=0.5
+		$Timers/CountdownTimer.wait_time=inter_countdowns
 	if countdown == 5:
 		countdown_msg("4!")	
-		$Timers/CountdownTimer.wait_time=0.5
+		$Timers/CountdownTimer.wait_time=inter_countdowns
 	countdown+=1
 	$Timers/CountdownTimer.start()
 
@@ -294,6 +316,21 @@ func setup_stage():
 		$Sample4.stream=Assets.tomTrack2
 		$music.stream=Assets.playNoteTrack2
 		$Bg/Sprite.texture=Assets.bgStage2
+		$Musicians/Bassist/Body.texture=Assets.BassistBodyLvl2
+		$Musicians/Bassist/Legs.texture=Assets.BassistLegs
+		$Musicians/Bassist/Clothes.texture=Assets.BassistClothesLvl2
+		$Musicians/Bassist/Clothes.show()
+		$Musicians/Bassist/Hair.texture=Assets.BassistHairLvl2
+		$Musicians/Bassist/Hair.show()
+		$Musicians/Bassist/Instrument.texture=Assets.BassistInstrumentLvl2
+		$Musicians/Harmonist/Instrument.texture=Assets.HarmonistInstrumentLvl2
+		$Musicians/Harmonist/Body.texture=Assets.HarmonistBodyLvl2
+		$Musicians/Harmonist/Legs.texture=Assets.HarmonistLegs
+		$Musicians/Harmonist/Clothes.texture=Assets.HarmonistClothesLvl2
+		$Musicians/Harmonist/Clothes.show()
+		$Musicians/Harmonist/Hair.texture=Assets.HarmonistHairLvl2
+		$Musicians/Harmonist/Hair.show()
+		$Musicians/Harmonist/Instrument.texture=Assets.HarmonistInstrumentLvl2
 	elif stage==3:
 		$midi1.file=Assets.midiTrack3
 		$midi2.file=Assets.midiTrack3
@@ -303,7 +340,38 @@ func setup_stage():
 		$Sample4.stream=Assets.tomTrack3
 		$music.stream=Assets.playNoteTrack3
 		$Bg/Sprite.texture=Assets.bgStage3
+		$Musicians/Bassist/Body.texture=Assets.BassistBodyLvl3
+		$Musicians/Bassist/Legs.texture=Assets.BassistLegsLvl3
+		$Musicians/Bassist/Clothes.texture=Assets.BassistClothesLvl3
+		$Musicians/Bassist/Clothes.show()
+		$Musicians/Bassist/Hair.texture=Assets.BassistHairLvl3
+		$Musicians/Bassist/Hair.show()
+		$Musicians/Bassist/Instrument.texture=Assets.BassistInstrumentLvl3
+		$Musicians/Harmonist/Instrument.texture=Assets.HarmonistInstrumentLvl3
+		$Musicians/Harmonist/Body.texture=Assets.HarmonistBodyLvl3
+		$Musicians/Harmonist/Legs.texture=Assets.HarmonistLegs
+		$Musicians/Harmonist/Clothes.texture=Assets.HarmonistClothesLvl3
+		$Musicians/Harmonist/Clothes.show()
+		$Musicians/Harmonist/Hair.texture=Assets.HarmonistHairLvl3
+		$Musicians/Harmonist/Hair.show()
+		$Musicians/Harmonist/Instrument.texture=Assets.HarmonistInstrumentLvl3
 
 func _on_music_finished():
+	$Notifications/LvlMessage.show()
 	if stage==1:
+		Globals.next_stage=2
+		show_lvl_msg("Stage 1 completed!\nGet ready for\nStage 2!!!")
+	if stage==2:
+		Globals.next_stage=3
+		show_lvl_msg("Stage 2 completed!\nGet ready for\nStage 3!!!")
+	if stage==3:
+		Globals.next_stage=4
+		show_lvl_msg("Stage 3 completed!\nYou are not human!")
 		pass # Replace with function body.
+
+func load_next_stage():
+	$Notifications/LvlMessage.hide()
+	if not Globals.next_stage==4:
+		get_tree().change_scene("res://Main.tscn")
+	else:
+		get_tree().change_scene("res://Exit.tscn")

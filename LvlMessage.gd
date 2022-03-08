@@ -3,8 +3,8 @@ extends Control
 func _ready():
 	pass # Replace with function body.
 
-func show_lvl_msg():
-	$Cont/Nr.text=str(Globals.next_stage)
+func show_lvl_msg(text):
+	$Cont/Nr.text=str(text)
 	$Cont/AnimationPlayer.play("show")
 
 func hide_msg():
@@ -12,6 +12,7 @@ func hide_msg():
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name=="disappear":
+		get_parent().get_parent().load_next_stage()
 		pass
 	if anim_name=="show":
 		$Cont/AnimationPlayer.play("disappear")
