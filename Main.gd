@@ -18,6 +18,7 @@ var left := []
 
 var stage=1
 #var test_stage_finished=true
+var stage_finished=false
 
 var spacebar_active=false
 
@@ -111,7 +112,7 @@ func _process(delta):
 #				print("WUT??")
 		if not s.queue.empty():
 			if s.queue.front().test_miss(delta_sum_):
-				play_random_clink()
+#				play_random_clink()
 				s.queue.pop_front().miss()
 				miss(s.node.global_position)
 				update_score(miss_points)
@@ -120,14 +121,14 @@ func _process(delta):
 	for s in stuff.values():
 		s.node.pressed = Input.is_action_pressed(s.key)
 #	if delta_sum_ >= 0.1 and not $midi1.playing:
-	if delta_sum_ >= 0.1 and not $midi1.playing:
+	if delta_sum_ >= 0.1 and not $midi1.playing and not stage_finished:
 #		$Timers/CountdownTimer.start()
 		$midi1.play()
 #	if delta_sum_ >= 1.0 and not $midi2.playing:
-	if delta_sum_ >= 1.1 and not $midi2.playing:
+	if delta_sum_ >= 1.1 and not $midi2.playing and not stage_finished:
 		$midi2.play()
 #	if delta_sum_ >= 1.0 and not $music.playing:
-	if delta_sum_ >= 1.1 and not $music.playing:
+	if delta_sum_ >= 1.1 and not $music.playing and not stage_finished:
 		spacebar_active=true
 		$music.play()
 #	if delta_sum_ >= 1.04 and not $Sample1.playing:
@@ -136,7 +137,7 @@ func _process(delta):
 			$Sample2.play()
 			$Sample3.play()
 			$Sample4.play()
-	if Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_accept"):
+	if (Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_accept")) and not stage_finished:
 		if spacebar_active:
 			get_tree().change_scene("res://Exit.tscn")
 #	if $music.get_playback_position()>=5 and test_stage_finished:
@@ -358,6 +359,7 @@ func setup_stage():
 
 func _on_music_finished():
 	$music.stop()
+	stage_finished = true
 	$Notifications/LvlMessage.show()
 	if stage==1:
 		Globals.next_stage=2

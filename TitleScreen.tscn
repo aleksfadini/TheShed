@@ -554,6 +554,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="arrows" type="Label" parent="Instructions/Arrows"]
+margin_left = -59.0
+margin_top = -48.0
+margin_right = 91.0
+margin_bottom = -34.0
+rect_scale = Vector2( 3, 3 )
+text = "arrows or A,D,J,L to play"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Label" type="Label" parent="Instructions/Arrows"]
 margin_left = -7.99998
 margin_top = 3.0
@@ -561,18 +573,6 @@ margin_right = 118.0
 margin_bottom = 17.0
 rect_scale = Vector2( 3, 3 )
 text = "press SPACE to START"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label2" type="Label" parent="Instructions/Arrows"]
-visible = false
-margin_left = -1.0
-margin_top = -60.0
-margin_right = 119.0
-margin_bottom = -46.0
-rect_scale = Vector2( 3, 3 )
-text = "ARROWS to play drums"
 __meta__ = {
 "_edit_use_anchors_": false
 }

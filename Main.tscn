@@ -540,20 +540,71 @@ scale = Vector2( 0.4, 0.4 )
 position = Vector2( -375.583, 287.885 )
 color = Color( 0.521569, 0.14902, 0.890196, 1 )
 
+[node name="letter" type="Label" parent="buttons/left"]
+margin_left = -17.0
+margin_top = -9.00012
+margin_right = 23.0
+margin_bottom = 4.99988
+rect_rotation = 90.0
+rect_scale = Vector2( 1.5, 1.5 )
+theme = ExtResource( 9 )
+text = "A"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="up" parent="buttons" instance=ExtResource( 4 )]
 position = Vector2( -15.5833, 307.885 )
 rotation = 0.0
 color = Color( 0, 0.647059, 1, 1 )
+
+[node name="letter2" type="Label" parent="buttons/up"]
+margin_left = -3.99999
+margin_top = 12.5
+margin_right = 36.0
+margin_bottom = 26.5
+rect_scale = Vector2( 1.5, 1.5 )
+theme = ExtResource( 9 )
+text = "D"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="down" parent="buttons" instance=ExtResource( 4 )]
 position = Vector2( 374.417, 277.885 )
 rotation = -3.14159
 color = Color( 0, 1, 0.392157, 1 )
 
+[node name="letter3" type="Label" parent="buttons/down"]
+margin_left = 5.0
+margin_top = -19.5
+margin_right = 45.0
+margin_bottom = -5.50003
+rect_rotation = 180.0
+rect_scale = Vector2( 1.5, 1.5 )
+theme = ExtResource( 9 )
+text = "J"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="right" parent="buttons" instance=ExtResource( 4 )]
 position = Vector2( 756.917, 285.385 )
 rotation = 1.5708
 color = Color( 0.890196, 0.14902, 0.14902, 1 )
+
+[node name="letter4" type="Label" parent="buttons/right"]
+margin_left = 17.0
+margin_top = -0.5
+margin_right = 57.0
+margin_bottom = 13.5
+rect_rotation = -90.0
+rect_scale = Vector2( 1.5, 1.5 )
+theme = ExtResource( 9 )
+text = "L"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Notifications" type="Node" parent="."]
 
