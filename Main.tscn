@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://samples/Stage1/Stage1_100_Hats.ogg" type="AudioStream" id=2]
@@ -32,6 +32,7 @@
 [ext_resource path="res://Heart.tscn" type="PackedScene" id=30]
 [ext_resource path="res://Health.gd" type="Script" id=31]
 [ext_resource path="res://BeginMsg.tscn" type="PackedScene" id=32]
+[ext_resource path="res://graphics/KeyPress.png" type="Texture" id=33]
 
 [sub_resource type="Curve" id=9]
 max_value = 5.0
@@ -553,6 +554,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="letterFrame" type="Sprite" parent="buttons/left/letter"]
+position = Vector2( 3.33332, 7.00002 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 33 )
+
 [node name="up" parent="buttons" instance=ExtResource( 4 )]
 position = Vector2( -15.5833, 307.885 )
 rotation = 0.0
@@ -569,6 +575,12 @@ text = "D"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="letterFrame2" type="Sprite" parent="buttons/up/letter2"]
+position = Vector2( 2.66666, 7.33334 )
+rotation = -3.57628e-06
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 33 )
 
 [node name="down" parent="buttons" instance=ExtResource( 4 )]
 position = Vector2( 374.417, 277.885 )
@@ -588,6 +600,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="letterFrame3" type="Sprite" parent="buttons/down/letter3"]
+position = Vector2( 3.33334, 6.99998 )
+rotation = -6.19888e-06
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 33 )
+
 [node name="right" parent="buttons" instance=ExtResource( 4 )]
 position = Vector2( 756.917, 285.385 )
 rotation = 1.5708
@@ -605,6 +623,12 @@ text = "L"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="letterFrame4" type="Sprite" parent="buttons/right/letter4"]
+position = Vector2( 2.66669, 6.99999 )
+rotation = -7.15256e-06
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 33 )
 
 [node name="Notifications" type="Node" parent="."]
 
