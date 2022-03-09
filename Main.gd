@@ -2,14 +2,12 @@ extends Node2D
 
 onready var textInst=load("res://UI/SmallMsg.tscn")
 var playNoteTrack=Assets.playNoteTrack1
-
 var yeah_points=10
 var miss_points=-2
 var early_points=-2
 var wut_points=-4
 var score_tot=0
 var timer_tot=0
-
 var countdown=0
 var play_note = true
 var streak=0
@@ -17,7 +15,6 @@ var delta_sum_ := 0.0
 var left := []
 
 var stage=1
-#var test_stage_finished=true
 var stage_finished=false
 
 var spacebar_active=false
