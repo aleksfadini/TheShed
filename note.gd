@@ -4,8 +4,8 @@ export(float)  var expected_time
 export(Color)  var color setget set_color
 #var early_buffer=0.01
 #var late_buffer=0.001
-var delay=800 # it was 600 then 660 the higher, the more you tend to hit early and arrows go faster
-var buffer=0.22
+var delay=650 # it was 600 then 660 the higher, the more you tend to hit early and arrows go faster
+var buffer=0.3
 var state_ := ""
 
 func _ready():

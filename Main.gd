@@ -357,6 +357,7 @@ func setup_stage():
 		$Musicians/Harmonist/Instrument.texture=Assets.HarmonistInstrumentLvl3
 
 func _on_music_finished():
+	$music.stop()
 	$Notifications/LvlMessage.show()
 	if stage==1:
 		Globals.next_stage=2
