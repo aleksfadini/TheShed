@@ -6,6 +6,10 @@ var yeah_points=10
 var miss_points=-2
 var early_points=-2
 var wut_points=-4
+var streak_points_5=20
+var streak_points_10=50
+var streak_points_20=100
+var streak_points_50=500
 var score_tot=0
 var timer_tot=0
 var countdown=0
@@ -195,11 +199,23 @@ func update_score(score=0):
 	Globals.score=score_tot
 	print("global score", Globals.score)
 	$crt/UI/Score/Points.text=str(score_tot)
-	if score==miss_points or score== early_points:
+	if score==miss_points or score==early_points:
 		Globals.hearts_halfs-=1
 		$crt/UI/Health.update_health()
 	if score==wut_points:
 		Globals.hearts_halfs-=2
+		$crt/UI/Health.update_health()
+	if score==streak_points_5:
+		Globals.hearts_halfs=clamp(Globals.hearts_halfs+1,0,20)
+		$crt/UI/Health.update_health()
+	if score==streak_points_10:
+		Globals.hearts_halfs=clamp(Globals.hearts_halfs+2,0,20)
+		$crt/UI/Health.update_health()
+	if score==streak_points_20:
+		Globals.hearts_halfs=clamp(Globals.hearts_halfs+4,0,20)
+		$crt/UI/Health.update_health()
+	if score==streak_points_50:
+		Globals.hearts_halfs=clamp(Globals.hearts_halfs+8,0,20)
 		$crt/UI/Health.update_health()
 	if Globals.hearts_halfs<=0:
 		get_tree().change_scene("res://Exit.tscn")
@@ -219,16 +235,20 @@ func update_streak(nr=0):
 		update_score(10)
 	if streak==5:
 		show_msg("Streak\n5x!!!",2)
-		update_score(20)
+		update_score(streak_points_5)
+		$applause.play()
 	if streak==10:
 		show_msg("Streak\n10x!!!",3)
-		update_score(50)
+		update_score(streak_points_10)
+		$applause.play()
 	if streak==20:
+		$applause.play()
 		show_msg("Streak\n20x!!!",4)
-		update_score(200)
+		update_score(streak_points_20)
 	if streak==50:
-		show_msg("Streak\n50x!!",5)
-		update_score(5000)
+		$applause.play()
+		show_msg(streak_points_50)
+		update_score(streak_points_50)
 
 func show_msg(text_msg,lvl=1):
 	$Msg/Cont/Label.text=text_msg
