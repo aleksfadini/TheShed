@@ -159,11 +159,11 @@ func _on_midi_event(channel, event):
 			var i = preload("res://note.tscn").instance()
 			add_child(i)
 			if stage == 1:
-				i.expected_time     = delta_sum_ + 0.8
+				i.expected_time = delta_sum_ + 0.8
 			elif stage == 2:
-				i.expected_time     = delta_sum_ + 0.8
+				i.expected_time = delta_sum_ + 0.8
 			elif stage == 3:
-				i.expected_time     = delta_sum_ + 0.8
+				i.expected_time = delta_sum_ + 0.8
 			i.global_rotation   = s.node.global_rotation
 			i.global_position.y = -400
 			i.global_position.x = s.node.global_position.x
