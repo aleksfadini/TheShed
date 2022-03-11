@@ -2,26 +2,26 @@ extends Node2D
 
 onready var textInst=load("res://UI/SmallMsg.tscn")
 var playNoteTrack=Assets.playNoteTrack1
-var yeah_points=10
-var miss_points=-2
-var early_points=-2
-var wut_points=-4
-var streak_points_5=20
-var streak_points_10=50
-var streak_points_20=100
-var streak_points_50=500
-var score_tot=0
-var timer_tot=0
-var countdown=0
-var play_note = true
-var streak=0
+var yeah_points:=10
+var miss_points:=-2
+var early_points:=-2
+var wut_points:=-4
+var streak_points_5:=20
+var streak_points_10:=50
+var streak_points_20:=100
+var streak_points_50:=500
+var score_tot:=0
+var timer_tot:=0
+var countdown:=0
+var play_note := true
+var streak:=0
 var delta_sum_ := 0.0
 var left := []
 
-var stage=1
-var stage_finished=false
+var stage:=1
+var stage_finished:=false
 
-var spacebar_active=false
+var spacebar_active:=false
 
 onready var stuff := {
 	36: {
@@ -132,7 +132,6 @@ func _process(delta):
 	if delta_sum_ >= 1.1 and not $music.playing and not stage_finished:
 		spacebar_active=true
 		$music.play()
-		fly_heart(2)
 #	if delta_sum_ >= 1.04 and not $Sample1.playing:
 		if play_note:
 			$Sample1.play()
@@ -159,7 +158,12 @@ func _on_midi_event(channel, event):
 		if s and event.type == 1:
 			var i = preload("res://note.tscn").instance()
 			add_child(i)
-			i.expected_time     = delta_sum_ + 0.8
+			if stage == 1:
+				i.expected_time     = delta_sum_ + 0.8
+			elif stage == 2:
+				i.expected_time     = delta_sum_ + 0.8
+			elif stage == 3:
+				i.expected_time     = delta_sum_ + 0.8
 			i.global_rotation   = s.node.global_rotation
 			i.global_position.y = -400
 			i.global_position.x = s.node.global_position.x
@@ -181,7 +185,7 @@ func early(glo_pos):
 func miss(glo_pos):
 	show_text(glo_pos,"miss")
 	
-func show_text(glo_pos,text,color=Color(1,1,1)):
+func show_text(glo_pos,text,color:=Color(1,1,1)):
 	var i = textInst.instance()
 	$Notifications/HitNotifications.add_child(i)
 	i.global_position=glo_pos
@@ -195,7 +199,7 @@ func mute_all():
 	$Sample3.volume_db=-80
 	$Sample4.volume_db=-80
 
-func update_score(score=0):
+func update_score(score:=0):
 	score_tot+=score
 	Globals.score=score_tot
 	print("global score", Globals.score)
@@ -275,7 +279,7 @@ func show_msg(text_msg,lvl=1):
 			$Msg/Cont/MegaParticles.emitting=true
 			$Msg/Cont/BecomeBig.play("Lev5")
 
-func show_lvl_msg(text):
+func show_lvl_msg(text:=""):
 	$Notifications/LvlMessage.show_lvl_msg(text)
 
 func _on_CountdownTimer_timeout():
@@ -311,7 +315,7 @@ func _on_CountdownTimer_timeout():
 	countdown+=1
 	$Timers/CountdownTimer.start()
 
-func countdown_msg(text):
+func countdown_msg(text:=""):
 	$Notifications/BeginMsg.show_begin_msg(text)
 
 func play_random_clink():
