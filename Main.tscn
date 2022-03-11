@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://samples/Stage1/Stage1_100_Hats.ogg" type="AudioStream" id=2]
@@ -34,6 +34,7 @@
 [ext_resource path="res://BeginMsg.tscn" type="PackedScene" id=32]
 [ext_resource path="res://graphics/KeyPress.png" type="Texture" id=33]
 [ext_resource path="res://audio/applause.ogg" type="AudioStream" id=34]
+[ext_resource path="res://FlyHeart.tscn" type="PackedScene" id=35]
 
 [sub_resource type="Curve" id=9]
 max_value = 5.0
@@ -282,9 +283,6 @@ margin_top = -43.0
 margin_right = 30.0
 margin_bottom = -3.0
 script = ExtResource( 31 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="crt/UI/Health"]
 visible = false
@@ -619,10 +617,7 @@ margin_right = 36.0
 margin_bottom = 26.5
 rect_scale = Vector2( 1.5, 1.5 )
 theme = ExtResource( 9 )
-text = "D"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "S"
 
 [node name="letterFrame2" type="Sprite" parent="buttons/up/letter2"]
 position = Vector2( 2.66666, 7.33334 )
@@ -643,10 +638,7 @@ margin_bottom = -5.50003
 rect_rotation = 180.0
 rect_scale = Vector2( 1.5, 1.5 )
 theme = ExtResource( 9 )
-text = "J"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "K"
 
 [node name="letterFrame3" type="Sprite" parent="buttons/down/letter3"]
 position = Vector2( 3.33334, 6.99998 )
@@ -679,6 +671,8 @@ scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 33 )
 
 [node name="Notifications" type="Node" parent="."]
+
+[node name="FlyHeart" parent="Notifications" instance=ExtResource( 35 )]
 
 [node name="HitNotifications" type="Node" parent="Notifications"]
 

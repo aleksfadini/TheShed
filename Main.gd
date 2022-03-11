@@ -132,6 +132,7 @@ func _process(delta):
 	if delta_sum_ >= 1.1 and not $music.playing and not stage_finished:
 		spacebar_active=true
 		$music.play()
+		fly_heart(2)
 #	if delta_sum_ >= 1.04 and not $Sample1.playing:
 		if play_note:
 			$Sample1.play()
@@ -206,15 +207,19 @@ func update_score(score=0):
 		Globals.hearts_halfs-=2
 		$crt/UI/Health.update_health()
 	if score==streak_points_5:
+		fly_heart(1)
 		Globals.hearts_halfs=clamp(Globals.hearts_halfs+1,0,20)
 		$crt/UI/Health.update_health()
 	if score==streak_points_10:
+		fly_heart(2)
 		Globals.hearts_halfs=clamp(Globals.hearts_halfs+2,0,20)
 		$crt/UI/Health.update_health()
 	if score==streak_points_20:
+		fly_heart(4)
 		Globals.hearts_halfs=clamp(Globals.hearts_halfs+4,0,20)
 		$crt/UI/Health.update_health()
 	if score==streak_points_50:
+		fly_heart(8)
 		Globals.hearts_halfs=clamp(Globals.hearts_halfs+8,0,20)
 		$crt/UI/Health.update_health()
 	if Globals.hearts_halfs<=0:
@@ -395,3 +400,6 @@ func load_next_stage():
 		get_tree().change_scene("res://Main.tscn")
 	else:
 		get_tree().change_scene("res://Exit.tscn")
+
+func fly_heart(halfs:=1):
+	$Notifications/FlyHeart.fly_heart(halfs)
