@@ -560,7 +560,7 @@ margin_top = -48.0
 margin_right = 91.0
 margin_bottom = -34.0
 rect_scale = Vector2( 3, 3 )
-text = "arrows or A,D,J,L to play"
+text = "arrows or A,S,K,L to play"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -573,9 +573,6 @@ margin_right = 118.0
 margin_bottom = 17.0
 rect_scale = Vector2( 3, 3 )
 text = "press SPACE to START"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="InstructionsAnim" type="AnimationPlayer" parent="Instructions"]
 anims/pulse = SubResource( 4 )

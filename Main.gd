@@ -74,7 +74,8 @@ func _ready() -> void:
 #	if play_note:
 #	$music.stream=playNoteTrack
 	mute_all()
-	Globals.reset_score()
+	if stage==1:
+		Globals.reset_score()
 	update_score()
 	$crt/UI/Health.update_health()
 #	if stage ==1:
@@ -159,11 +160,11 @@ func _on_midi_event(channel, event):
 			var i = preload("res://note.tscn").instance()
 			add_child(i)
 			if stage == 1:
-				i.expected_time = delta_sum_ + 0.8
+				i.expected_time = delta_sum_ + 0.95
 			elif stage == 2:
-				i.expected_time = delta_sum_ + 0.8
+				i.expected_time = delta_sum_ + 0.95
 			elif stage == 3:
-				i.expected_time = delta_sum_ + 0.8
+				i.expected_time = delta_sum_ + 0.95
 			i.global_rotation   = s.node.global_rotation
 			i.global_position.y = -400
 			i.global_position.x = s.node.global_position.x
@@ -245,18 +246,18 @@ func update_streak(nr=0):
 	if streak==5:
 		show_msg("Streak\n5x!!!",2)
 		update_score(streak_points_5)
-		$applause.play()
+#		$applause.play()
 	if streak==10:
 		show_msg("Streak\n10x!!!",3)
 		update_score(streak_points_10)
-		$applause.play()
+#		$applause.play()
 	if streak==20:
 		$applause.play()
 		show_msg("Streak\n20x!!!",4)
 		update_score(streak_points_20)
 	if streak==50:
 		$applause.play()
-		show_msg(streak_points_50)
+		show_msg("Streak\n50x!!!",5)
 		update_score(streak_points_50)
 
 func show_msg(text_msg,lvl=1):

@@ -4,16 +4,16 @@ export(float)  var expected_time
 export(Color)  var color setget set_color
 #var early_buffer=0.01
 #var late_buffer=0.001
-var delay=650 # it was 600 then 660 the higher, the more you tend to hit early and arrows go faster
-var buffer=0.32
+var delay=700 # it was 600 then 660 the higher, the more you tend to hit early and arrows go faster
+var buffer=0.15
 var state_ := ""
 
 func _ready():
 	if Globals.next_stage==2:
 		delay=700
-		buffer=0.25
+		buffer=0.15
 	if Globals.next_stage==3:
-		buffer=0.2
+		buffer=0.15
 		delay=750 # was 1000
 
 func set_color(value:Color) -> void:

@@ -725,6 +725,7 @@ stream = ExtResource( 27 )
 
 [node name="applause" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 34 )
+volume_db = -15.0
 pitch_scale = 1.5
 
 [node name="Wrong" type="AudioStreamPlayer" parent="."]
