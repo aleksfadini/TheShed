@@ -10,4 +10,6 @@ func _process(delta):
 	delta_sum += delta
 	if delta_sum >=1.0:
 		if Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_accept"):
+			Globals.next_stage=1
+			Globals.reset_score()
 			get_tree().change_scene("res://Main.tscn")

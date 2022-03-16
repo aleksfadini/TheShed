@@ -4,7 +4,7 @@ var score:= 0
 var timer_tot:= 0
 const max_hearts:=10
 var hearts_halfs:=20
-var next_stage:=2
+var next_stage:=1
 
 func _ready():
 	reset_score()

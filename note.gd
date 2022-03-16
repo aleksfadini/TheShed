@@ -11,9 +11,9 @@ var state_ := ""
 func _ready():
 	if Globals.next_stage==2:
 		delay=700
-		buffer=0.15
+		buffer=0.17
 	if Globals.next_stage==3:
-		buffer=0.15
+		buffer=0.19
 		delay=750 # was 1000
 
 func set_color(value:Color) -> void:

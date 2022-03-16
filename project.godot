@@ -53,6 +53,7 @@ config/icon="res://graphics/Logo.png"
 
 Globals="*res://Globals.gd"
 Assets="*res://assets.gd"
+SilentWolf="*res://addons/silent_wolf/silent_wolf/SilentWolf.gd"
 
 [display]
 
