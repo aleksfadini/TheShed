@@ -139,8 +139,12 @@ func _process(delta):
 			$Sample2.play()
 			$Sample3.play()
 			$Sample4.play()
-	if delta_sum_ >= 10:
-		win()
+			
+	# Uncomment the two lines below to autowin after 10 secs
+#	if delta_sum_ >= 10:
+#		win()
+		
+		
 #	if (Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_accept")) and not stage_finished:
 #		if spacebar_active:
 #			get_tree().change_scene("res://Exit.tscn")
