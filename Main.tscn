@@ -803,8 +803,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="applause2" type="AudioStreamPlayer" parent="Win"]
+stream = ExtResource( 34 )
+volume_db = -10.0
+
 [node name="ColorRect" type="ColorRect" parent="Win"]
-self_modulate = Color( 1, 1, 1, 0.835294 )
+self_modulate = Color( 1, 1, 1, 0.654902 )
 margin_left = -589.0
 margin_top = -516.0
 margin_right = 611.0

@@ -139,8 +139,8 @@ func _process(delta):
 			$Sample2.play()
 			$Sample3.play()
 			$Sample4.play()
-#	if delta_sum_ >= 10:
-#		win()
+	if delta_sum_ >= 10:
+		win()
 #	if (Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_accept")) and not stage_finished:
 #		if spacebar_active:
 #			get_tree().change_scene("res://Exit.tscn")
@@ -431,6 +431,7 @@ func win():
 	get_tree().paused=true
 	$Win.show()
 	$Notifications/BeginMsg.hide()
+	$Win/applause2.play()
 #	$Notifications.hide()
 	$Win/pressSpace/flicker.play("flicker")
 	$Win/Anim.play("show")
