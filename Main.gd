@@ -139,9 +139,9 @@ func _process(delta):
 			$Sample2.play()
 			$Sample3.play()
 			$Sample4.play()
-	if (Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_accept")) and not stage_finished:
-		if spacebar_active:
-			get_tree().change_scene("res://Exit.tscn")
+#	if (Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_accept")) and not stage_finished:
+#		if spacebar_active:
+#			get_tree().change_scene("res://Exit.tscn")
 #	if $music.get_playback_position()>=5 and test_stage_finished:
 #		test_stage_finished=false
 #		_on_music_finished()
@@ -228,7 +228,7 @@ func update_score(score:=0):
 		Globals.hearts_halfs=clamp(Globals.hearts_halfs+8,0,20)
 		$crt/UI/Health.update_health()
 	if Globals.hearts_halfs<=0:
-		get_tree().change_scene("res://Exit.tscn")
+		lose()
 
 func _on_PlayTimer_timeout():
 	timer_tot+=1
@@ -408,3 +408,19 @@ func load_next_stage():
 
 func fly_heart(halfs:=1):
 	$Notifications/FlyHeart.fly_heart(halfs)
+
+func lose():
+	get_tree().paused=true
+	$GameOver.show()
+	$Notifications/BeginMsg.hide()
+#	$Notifications.hide()
+	if stage ==1:
+		$GameOver/GameOverSound.stream=Assets.game_over_stage1
+	elif stage ==2:
+		$GameOver/GameOverSound.stream=Assets.game_over_stage2
+	elif stage ==3:
+		$GameOver/GameOverSound.stream=Assets.game_over_stage3
+	$GameOver/pressSpace/flicker.play("flicker")
+	$GameOver/Anim.play("show")
+	$GameOver/GameOverSound.play()
+	

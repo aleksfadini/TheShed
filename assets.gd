@@ -20,6 +20,10 @@ var tomTrack3=load("res://samples/Stage3/Stage3_130_Toms.ogg")
 var midiTrack1="res://samples/Stage1/Stage1_100.mid"
 var midiTrack2="res://samples/Stage2/Stage2_115.mid"
 var midiTrack3="res://samples/Stage3/Stage3_130.mid"
+
+var game_over_stage1=load("res://audio/Stage1Loss.ogg")
+var game_over_stage2=load("res://audio/Stage2Loss.ogg")
+var game_over_stage3=load("res://audio/Stage3Loss.ogg")
 # visual assets
 var bgStage2=load("res://graphics/BgNibiruCraters.png")
 var bgStage3=load("res://graphics/BgBlackRunCastle.png")
