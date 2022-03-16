@@ -139,6 +139,8 @@ func _process(delta):
 			$Sample2.play()
 			$Sample3.play()
 			$Sample4.play()
+#	if delta_sum_ >= 10:
+#		win()
 #	if (Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_accept")) and not stage_finished:
 #		if spacebar_active:
 #			get_tree().change_scene("res://Exit.tscn")
@@ -396,7 +398,8 @@ func _on_music_finished():
 		show_lvl_msg("Stage 2 completed!\nGet ready for\nStage 3!!!")
 	if stage==3:
 		Globals.next_stage=4
-		show_lvl_msg("Stage 3 completed!\nYou are not human!")
+		win()
+#		show_lvl_msg("Stage 3 completed!\nYou are not human!")
 		pass # Replace with function body.
 
 func load_next_stage():
@@ -423,4 +426,15 @@ func lose():
 	$GameOver/pressSpace/flicker.play("flicker")
 	$GameOver/Anim.play("show")
 	$GameOver/GameOverSound.play()
+
+func win():
+	get_tree().paused=true
+	$Win.show()
+	$Notifications/BeginMsg.hide()
+#	$Notifications.hide()
+	$Win/pressSpace/flicker.play("flicker")
+	$Win/Anim.play("show")
+	$Win/WinSound.play()
+	$Win/Confetti.emitting=true
+	pass
 	

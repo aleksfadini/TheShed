@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://samples/Stage1/Stage1_100_Hats.ogg" type="AudioStream" id=2]
@@ -35,7 +35,10 @@
 [ext_resource path="res://graphics/KeyPress.png" type="Texture" id=33]
 [ext_resource path="res://audio/applause.ogg" type="AudioStream" id=34]
 [ext_resource path="res://FlyHeart.tscn" type="PackedScene" id=35]
-[ext_resource path="res://GameOver.gd" type="Script" id=36]
+[ext_resource path="res://GameOver.tscn" type="PackedScene" id=36]
+[ext_resource path="res://Win.gd" type="Script" id=37]
+[ext_resource path="res://audio/win.ogg" type="AudioStream" id=38]
+[ext_resource path="res://graphics/Diamon.png" type="Texture" id=39]
 
 [sub_resource type="Curve" id=9]
 max_value = 5.0
@@ -184,7 +187,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 0, 0.352941, 1 ), Color( 0, 1, 0.835294, 1 ), Color( 1, 0.235294, 0, 1 ), Color( 0.662745, 1, 0, 1 ), Color( 0.615686, 0, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=16]
 resource_name = "flicker"
 loop = true
 tracks/0/type = "value"
@@ -199,8 +202,20 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("../OverMsg:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.5, 0.7, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.831373, 0, 0, 1 ), Color( 0, 0.694118, 1, 1 ), Color( 0.172549, 1, 0, 1 ), Color( 0.568627, 0, 1, 1 ), Color( 1, 0.960784, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=17]
 resource_name = "show"
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:modulate")
@@ -775,33 +790,51 @@ pitch_scale = 1.5
 [node name="Wrong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 
-[node name="GameOver" type="Control" parent="."]
+[node name="GameOver" parent="." instance=ExtResource( 36 )]
+
+[node name="Win" type="Control" parent="."]
 pause_mode = 2
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 theme = ExtResource( 9 )
-script = ExtResource( 36 )
+script = ExtResource( 37 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="GameOver"]
-modulate = Color( 1, 1, 1, 0 )
+[node name="ColorRect" type="ColorRect" parent="Win"]
+self_modulate = Color( 1, 1, 1, 0.835294 )
 margin_left = -589.0
 margin_top = -516.0
 margin_right = 611.0
 margin_bottom = 684.0
-color = Color( 0.462745, 0.00392157, 0.00392157, 1 )
+color = Color( 0.780392, 1, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GameOverSound" type="AudioStreamPlayer" parent="GameOver"]
-stream = ExtResource( 7 )
+[node name="Confetti" type="CPUParticles2D" parent="Win"]
+position = Vector2( -1, -455 )
+scale = Vector2( 4, 4 )
+emitting = false
+amount = 64
+lifetime = 2.0
+texture = ExtResource( 39 )
+emission_shape = 2
+emission_rect_extents = Vector2( 100, 1 )
+angular_velocity = 40.0
+angular_velocity_random = 1.0
+linear_accel = 120.0
+linear_accel_random = 1.0
 
-[node name="pressSpace" type="Label" parent="GameOver"]
-modulate = Color( 1, 1, 1, 0 )
+[node name="WinSound" type="AudioStreamPlayer" parent="Win"]
+stream = ExtResource( 38 )
+volume_db = -5.0
+pitch_scale = 1.1
+
+[node name="pressSpace" type="Label" parent="Win"]
+modulate = Color( 1, 1, 1, 0.472958 )
 margin_left = -208.0
 margin_top = 85.0
 margin_right = -136.0
@@ -814,29 +847,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="flicker" type="AnimationPlayer" parent="GameOver/pressSpace"]
-anims/flicker = SubResource( 17 )
+[node name="flicker" type="AnimationPlayer" parent="Win/pressSpace"]
+anims/flicker = SubResource( 16 )
 
-[node name="OverMsg" type="Control" parent="GameOver"]
-margin_top = -800.0
+[node name="OverMsg" type="Control" parent="Win"]
+modulate = Color( 0.264048, 0.473662, 0.682395, 1 )
 margin_right = 40.0
-margin_bottom = -760.0
+margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="GameOver/OverMsg"]
-margin_left = -270.0
-margin_top = -45.0
-margin_right = -198.0
-margin_bottom = -31.0
+[node name="Label" type="Label" parent="Win/OverMsg"]
+margin_left = -299.0
+margin_top = -51.0
+margin_right = -221.0
+margin_bottom = -37.0
 rect_scale = Vector2( 8, 8 )
-text = "GAME OVER!!!"
+text = "YOU MADE IT!!"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Anim" type="AnimationPlayer" parent="GameOver"]
-anims/show = SubResource( 16 )
+[node name="Anim" type="AnimationPlayer" parent="Win"]
+anims/show = SubResource( 17 )
 
 [connection signal="finished" from="music" to="." method="_on_music_finished"]
 [connection signal="midi_event" from="midi1" to="." method="_on_midi_event"]
