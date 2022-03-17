@@ -6,6 +6,7 @@ func _ready():
 func show_lvl_msg(text):
 	$Cont/Nr.text=str(text)
 	$Cont/AnimationPlayer.play("show")
+	$Applause.play()
 
 func hide_msg():
 	$Cont/AnimationPlayer.play("disappear")

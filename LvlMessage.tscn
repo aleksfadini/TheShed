@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Themes/UITheme.tres" type="Theme" id=1]
 [ext_resource path="res://LvlMessage.gd" type="Script" id=2]
+[ext_resource path="res://audio/applause.ogg" type="AudioStream" id=3]
 
 [sub_resource type="Animation" id=2]
 resource_name = "disappear"
@@ -91,7 +92,7 @@ margin_left = -470.0
 margin_top = -395.0
 margin_right = 1530.0
 margin_bottom = 1105.0
-color = Color( 0, 0, 0, 1 )
+color = Color( 1, 0.937255, 0, 0.847059 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -151,5 +152,10 @@ __meta__ = {
 playback_speed = 0.5
 anims/disappear = SubResource( 2 )
 anims/show = SubResource( 1 )
+
+[node name="Applause" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0
+pitch_scale = 1.2
 
 [connection signal="animation_finished" from="Cont/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
