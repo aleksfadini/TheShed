@@ -430,7 +430,7 @@ margin_top = -386.0
 margin_right = 182.0
 margin_bottom = -374.0
 rect_scale = Vector2( 2, 2 )
-text = "type your discord handle:"
+text = "type your discord handle here below:"
 align = 1
 autowrap = true
 
@@ -443,7 +443,7 @@ rect_scale = Vector2( 2, 2 )
 text = "the button below will
 submit your score
 and auto-prepare your tweet
-for the waitlist prize"
+to share your score"
 align = 1
 autowrap = true
 
