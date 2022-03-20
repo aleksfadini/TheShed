@@ -33,9 +33,6 @@ margin_top = 20.0
 margin_right = 1884.0
 margin_bottom = 1071.0
 custom_constants/separation = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TitleContainer" type="CenterContainer" parent="Board"]
 margin_right = 1864.0
@@ -85,4 +82,5 @@ margin_left = 582.0
 margin_right = 1281.0
 margin_bottom = 118.0
 text = "Close Leaderboard"
+
 [connection signal="pressed" from="Board/CloseButtonContainer/CloseButton" to="." method="_on_CloseButton_pressed"]

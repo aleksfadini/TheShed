@@ -555,12 +555,24 @@ __meta__ = {
 }
 
 [node name="arrows" type="Label" parent="Instructions/Arrows"]
-margin_left = -59.0
-margin_top = -48.0
-margin_right = 91.0
-margin_bottom = -34.0
-rect_scale = Vector2( 3, 3 )
+margin_left = 21.0
+margin_top = -53.0
+margin_right = 171.0
+margin_bottom = -39.0
+rect_scale = Vector2( 2, 2 )
 text = "arrows or A,S,K,L to play"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TforScore" type="Label" parent="Instructions/Arrows"]
+margin_left = 21.0
+margin_top = -32.0
+margin_right = 171.0
+margin_bottom = -18.0
+rect_scale = Vector2( 2, 2 )
+text = "press T now for top scores"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -573,6 +585,16 @@ margin_right = 118.0
 margin_bottom = 17.0
 rect_scale = Vector2( 3, 3 )
 text = "press SPACE to START"
+
+[node name="version" type="Label" parent="Instructions/Arrows/Label"]
+self_modulate = Color( 1, 1, 1, 0.203922 )
+margin_left = 22.3333
+margin_top = 17.0
+margin_right = 122.333
+margin_bottom = 29.0
+rect_scale = Vector2( 0.75, 0.75 )
+text = "v 0.0.03"
+align = 1
 
 [node name="InstructionsAnim" type="AnimationPlayer" parent="Instructions"]
 anims/pulse = SubResource( 4 )
@@ -613,9 +635,6 @@ margin_bottom = 158.0
 rect_scale = Vector2( 10, 10 )
 text = "The
 "
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Shed" type="Label" parent="Titles/SlideFromUp/MegaTitle"]
 margin_left = 204.0

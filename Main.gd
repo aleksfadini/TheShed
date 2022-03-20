@@ -418,6 +418,7 @@ func fly_heart(halfs:=1):
 
 func lose():
 	get_tree().paused=true
+	hide_behind_game_over()
 	$GameOver.show()
 	$Notifications/BeginMsg.hide()
 #	$Notifications.hide()
@@ -433,6 +434,7 @@ func lose():
 
 func win():
 	get_tree().paused=true
+	hide_behind_game_over()
 	$Win.show()
 	$Notifications/BeginMsg.hide()
 	$Win/applause2.play()
@@ -443,3 +445,7 @@ func win():
 	$Win/Confetti.emitting=true
 	pass
 	
+func hide_behind_game_over():
+	for each_node in get_tree().get_nodes_in_group("arrows"):
+		each_node.hide()
+	$Notifications.hide()

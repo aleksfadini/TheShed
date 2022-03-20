@@ -51,9 +51,9 @@ config/icon="res://graphics/Logo.png"
 
 [autoload]
 
+SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
 Globals="*res://Globals.gd"
 Assets="*res://assets.gd"
-SilentWolf="*res://addons/silent_wolf/silent_wolf/SilentWolf.gd"
 
 [display]
 
