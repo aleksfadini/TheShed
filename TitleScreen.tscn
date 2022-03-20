@@ -572,7 +572,7 @@ margin_top = -32.0
 margin_right = 171.0
 margin_bottom = -18.0
 rect_scale = Vector2( 2, 2 )
-text = "press T now for top scores"
+text = "press T to see score leaderboard"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
