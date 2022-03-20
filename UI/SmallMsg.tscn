@@ -59,7 +59,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[node name="SmallMsg" type="Node2D"]
+[node name="SmallMsg" type="Node2D" groups=["floating"]]
 script = ExtResource( 1 )
 
 [node name="Particles2D" type="CPUParticles2D" parent="."]

@@ -448,4 +448,6 @@ func win():
 func hide_behind_game_over():
 	for each_node in get_tree().get_nodes_in_group("arrows"):
 		each_node.hide()
+	for each_node in get_tree().get_nodes_in_group("floating"):
+		each_node.hide()
 	$Notifications.hide()
