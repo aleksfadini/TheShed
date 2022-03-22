@@ -79,6 +79,7 @@ func _ready() -> void:
 		Globals.reset_score()
 	else:
 		score_tot=Globals.score
+		timer_tot=Globals.timer_tot
 	update_score()
 	$crt/UI/Health.update_health()
 #	if stage ==1:
