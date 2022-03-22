@@ -22,6 +22,7 @@ var stage:=1
 var stage_finished:=false
 
 var spacebar_active:=false
+var next_level_test=true
 
 onready var stuff := {
 	36: {
@@ -76,6 +77,8 @@ func _ready() -> void:
 	mute_all()
 	if stage==1:
 		Globals.reset_score()
+	else:
+		score_tot=Globals.score
 	update_score()
 	$crt/UI/Health.update_health()
 #	if stage ==1:
@@ -144,6 +147,9 @@ func _process(delta):
 #	if delta_sum_ >= 2:
 #		_on_music_finished()
 #		win()
+#	if delta_sum_ >= 20 and next_level_test:
+#		next_level_test=false
+#		_on_music_finished()
 		
 		
 #	if (Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_accept")) and not stage_finished:

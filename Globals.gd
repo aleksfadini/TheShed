@@ -15,3 +15,4 @@ func reset_score():
 	score = 0
 	timer_tot= 0
 	hearts_halfs = max_hearts*2
+#	hearts_halfs = 100000

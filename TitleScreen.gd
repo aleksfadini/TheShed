@@ -13,6 +13,7 @@ func _ready():
 	$Instructions/InstructionsAnim.play("show")
 	_on_Colors_timeout()
 	$Instructions/Arrows/Label/version.text="alpha "+Globals.game_version
+	Globals.reset_score()
 	pass # Replace with function body.
 
 func _process(delta):
