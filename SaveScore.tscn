@@ -423,6 +423,9 @@ rect_scale = Vector2( 3, 3 )
 text = "Submit Your Score"
 align = 1
 autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="typeName" type="Label" parent="Instructions/Arrows"]
 margin_left = 2.0
@@ -430,7 +433,7 @@ margin_top = -386.0
 margin_right = 182.0
 margin_bottom = -374.0
 rect_scale = Vector2( 2, 2 )
-text = "type your discord handle here below:"
+text = "type your twitter handle here below:"
 align = 1
 autowrap = true
 

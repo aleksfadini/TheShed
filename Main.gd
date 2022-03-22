@@ -141,7 +141,8 @@ func _process(delta):
 			$Sample4.play()
 			
 	# Uncomment the two lines below to autowin after 10 secs
-#	if delta_sum_ >= 10:
+#	if delta_sum_ >= 2:
+#		_on_music_finished()
 #		win()
 		
 		
@@ -393,6 +394,8 @@ func setup_stage():
 func _on_music_finished():
 	$music.stop()
 	stage_finished = true
+	hide_behind_game_over()
+	$Notifications.show()
 	$Notifications/LvlMessage.show()
 	if stage==1:
 		Globals.next_stage=2

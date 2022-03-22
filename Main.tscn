@@ -736,17 +736,18 @@ texture = ExtResource( 33 )
 [node name="HitNotifications" type="Node" parent="Notifications"]
 
 [node name="BeginMsg" parent="Notifications" instance=ExtResource( 32 )]
-margin_left = -1044.0
-margin_top = -622.0
-margin_right = -20.0
-margin_bottom = -22.0
+margin_left = -230.0
+margin_top = -289.0
+margin_right = 794.0
+margin_bottom = 311.0
+rect_scale = Vector2( 0.5, 0.5 )
 
 [node name="LvlMessage" parent="Notifications" instance=ExtResource( 29 )]
 visible = false
-margin_left = -917.0
-margin_top = -605.0
-margin_right = 107.0
-margin_bottom = -5.0
+margin_left = -400.0
+margin_top = -400.0
+margin_right = 624.0
+margin_bottom = 200.0
 rect_scale = Vector2( 0.75, 0.75 )
 
 [node name="Timers" type="Node" parent="."]
@@ -808,11 +809,12 @@ stream = ExtResource( 34 )
 volume_db = -10.0
 
 [node name="ColorRect" type="ColorRect" parent="Win"]
+modulate = Color( 1, 1, 1, 0 )
 self_modulate = Color( 1, 1, 1, 0.654902 )
 margin_left = -589.0
 margin_top = -516.0
-margin_right = 611.0
-margin_bottom = 684.0
+margin_right = 1411.0
+margin_bottom = 1484.0
 color = Color( 0.780392, 1, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -856,8 +858,9 @@ anims/flicker = SubResource( 16 )
 
 [node name="OverMsg" type="Control" parent="Win"]
 modulate = Color( 0.264048, 0.473662, 0.682395, 1 )
+margin_top = -800.0
 margin_right = 40.0
-margin_bottom = 40.0
+margin_bottom = -760.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
