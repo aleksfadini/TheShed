@@ -14,6 +14,7 @@ func _ready():
 	_on_Colors_timeout()
 	$Instructions/Arrows/Label/version.text="alpha "+Globals.game_version
 	Globals.reset_score()
+#	SilentWolf.Scores.wipe_leaderboard()
 	pass # Replace with function body.
 
 func _process(delta):
