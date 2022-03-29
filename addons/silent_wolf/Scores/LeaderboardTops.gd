@@ -8,7 +8,13 @@ var list_index = 0
 # Replace the leaderboard name if you're not using the default leaderboard
 var ld_name = "main"
 
-var tot_scores_displayed=50
+var tot_scores_displayed=30
+
+var array_of_existent_score_names=[]
+var playernames_hidden=["@composableintrn","@Composableinrn","@ComposableInrn", "@yaevin"]
+
+var top_displayed=10
+var display_count=0
 
 func _ready():
 	print("SilentWolf.Scores.leaderboards: " + str(SilentWolf.Scores.leaderboards))
@@ -88,12 +94,18 @@ func score_in_score_array(scores, new_score):
 
 
 func add_item(player_name, score):
-	var item = ScoreItem.instance()
-	list_index += 1
-	item.get_node("PlayerName").text = str(list_index) + str(". ") + player_name
-	item.get_node("Score").text = score
-	item.margin_top = list_index * 100
-	$"Board/HighScores/ScoreItemContainer".add_child(item)
+	if display_count < top_displayed:
+		if not (array_of_existent_score_names.has(player_name) or playernames_hidden.has(player_name)):
+			var item = ScoreItem.instance()
+			list_index += 1
+			item.get_node("PlayerName").text = str(list_index) + str(". ") + player_name
+			item.get_node("Score").text = score
+			item.margin_top = list_index * 100
+			$"Board/HighScores/ScoreItemContainer".add_child(item)
+			array_of_existent_score_names.append(player_name)
+			display_count+=1
+		else:
+			pass
 
 
 func add_no_scores_message():
