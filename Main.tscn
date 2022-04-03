@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://samples/Stage1/Stage1_100_Hats.ogg" type="AudioStream" id=2]
@@ -39,6 +39,7 @@
 [ext_resource path="res://Win.gd" type="Script" id=37]
 [ext_resource path="res://audio/win.ogg" type="AudioStream" id=38]
 [ext_resource path="res://graphics/Diamon.png" type="Texture" id=39]
+[ext_resource path="res://ScoreTooltip.tscn" type="PackedScene" id=40]
 
 [sub_resource type="Curve" id=9]
 max_value = 5.0
@@ -261,9 +262,6 @@ margin_left = -14.0
 margin_top = -33.0
 margin_right = 26.0
 margin_bottom = 7.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="crt/UI/Score"]
 margin_left = -334.0
@@ -741,6 +739,13 @@ margin_top = -289.0
 margin_right = 794.0
 margin_bottom = 311.0
 rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="ScoreTooltip" parent="Notifications" instance=ExtResource( 40 )]
+modulate = Color( 0.501961, 1, 0.501961, 1 )
+margin_left = -86.0
+margin_top = -255.0
+margin_right = 938.0
+margin_bottom = 345.0
 
 [node name="LvlMessage" parent="Notifications" instance=ExtResource( 29 )]
 visible = false

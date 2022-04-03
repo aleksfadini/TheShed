@@ -10,6 +10,11 @@ var streak_points_5:=20
 var streak_points_10:=50
 var streak_points_20:=100
 var streak_points_50:=500
+var streak_points_100:=1500
+var streak_points_200:=5000
+var streak_points_300:=10000
+var streak_points_400:=20000
+var streak_points_1000:=100000
 var score_tot:=0
 var timer_tot:=0
 var countdown:=0
@@ -146,6 +151,7 @@ func _process(delta):
 			
 	# Uncomment the two lines below to autowin after 10 secs
 #	if delta_sum_ >= 2:
+#		show_score_gained("+1000")
 #		_on_music_finished()
 #		win()
 #	if delta_sum_ >= 20 and next_level_test:
@@ -216,6 +222,11 @@ func mute_all():
 
 func update_score(score:=0):
 	score_tot+=score
+	if score >0:
+		$crt/UI/Score.modulate=Color(0.5,1,0.5)
+	else:
+		$crt/UI/Score.modulate=Color(1,0,0)
+		
 	Globals.score=score_tot
 	print("global score", Globals.score)
 	$crt/UI/Score/Points.text=str(score_tot)
@@ -234,15 +245,37 @@ func update_score(score:=0):
 		Globals.hearts_halfs=clamp(Globals.hearts_halfs+2,0,20)
 		$crt/UI/Health.update_health()
 	if score==streak_points_20:
-		fly_heart(4)
+		fly_heart(3)
 		Globals.hearts_halfs=clamp(Globals.hearts_halfs+4,0,20)
 		$crt/UI/Health.update_health()
 	if score==streak_points_50:
-		fly_heart(8)
+		fly_heart(4)
+		Globals.hearts_halfs=clamp(Globals.hearts_halfs+8,0,20)
+		$crt/UI/Health.update_health()
+	if score==streak_points_100:
+		fly_heart(4)
+		Globals.hearts_halfs=clamp(Globals.hearts_halfs+8,0,20)
+		$crt/UI/Health.update_health()
+	if score==streak_points_200:
+		fly_heart(4)
+		Globals.hearts_halfs=clamp(Globals.hearts_halfs+8,0,20)
+		$crt/UI/Health.update_health()
+	if score==streak_points_300:
+		fly_heart(4)
+		Globals.hearts_halfs=clamp(Globals.hearts_halfs+8,0,20)
+		$crt/UI/Health.update_health()
+	if score==streak_points_400:
+		fly_heart(4)
+		Globals.hearts_halfs=clamp(Globals.hearts_halfs+8,0,20)
+		$crt/UI/Health.update_health()
+	if score==streak_points_1000:
+		fly_heart(4)
 		Globals.hearts_halfs=clamp(Globals.hearts_halfs+8,0,20)
 		$crt/UI/Health.update_health()
 	if Globals.hearts_halfs<=0:
 		lose()
+	if score>=streak_points_5:
+		show_score_gained("+"+str(score))
 
 func _on_PlayTimer_timeout():
 	timer_tot+=1
@@ -273,6 +306,26 @@ func update_streak(nr=0):
 		$applause.play()
 		show_msg("Streak\n50x!!!",5)
 		update_score(streak_points_50)
+	if streak==100:
+		$applause.play()
+		show_msg("Streak\n50x!!!",5)
+		update_score(streak_points_100)
+	if streak==200:
+		$applause.play()
+		show_msg("Streak\n50x!!!",5)
+		update_score(streak_points_200)
+	if streak==300:
+		$applause.play()
+		show_msg("Streak\n50x!!!",5)
+		update_score(streak_points_300)
+	if streak==400:
+		$applause.play()
+		show_msg("Streak\n50x!!!",5)
+		update_score(streak_points_400)
+	if streak==1000:
+		$applause.play()
+		show_msg("Streak\n50x!!!",5)
+		update_score(streak_points_1000)
 
 func show_msg(text_msg,lvl=1):
 	$Msg/Cont/Label.text=text_msg
@@ -461,3 +514,7 @@ func hide_behind_game_over():
 	for each_node in get_tree().get_nodes_in_group("floating"):
 		each_node.hide()
 	$Notifications.hide()
+	$Notifications.modulate.a=0
+
+func show_score_gained(score_text):
+	$Notifications/ScoreTooltip.show_begin_msg(score_text)
